@@ -1,3 +1,10 @@
+# Install instructions
+1. cd into the directory
+2. Run `npm install -g yarn`
+3. Run `yarn`. This will install the dependencies
+4. Run `yarn start` to start the development server
+
+# A message form create-react-app
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
