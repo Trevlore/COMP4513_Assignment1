@@ -1,14 +1,21 @@
-name: CI
+name: Push to production
 
 on: [push]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+
     - uses: actions/checkout@v2
+
+    - name: Install Deps
+        run: yarn
+    - name: Build Prod Version
+        run: yarn run build
     - name: Google Cloud Platform (GCP) CLI - gcloud
       uses: actions-hub/gcloud@278.0.0
       with:
