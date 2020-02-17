@@ -4,6 +4,9 @@
 3. Run `yarn`. This will install the dependencies
 4. Run `yarn start` to start the development server
 
+# Image credit to:
+- Iron Man Image: https://unsplash.com/photos/jhARm0AqF_E
+
 # A message form create-react-app
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
