@@ -25,17 +25,17 @@ class Home extends React.Component {
             <div className="is-fullheight">
                 <div className="column is-4 is-offset-4" style={this.style}>
                     <div className="box" >
-                    <h3 className="title has-text-black has-text-centered">Movies</h3>
+                    <h3 className="title has-text-black has-text-centered">Your Movie List</h3>
 
                         <div className="field">
                             <div className="control">
-                                <input  name="searchQuery" onChange={this.onChange} className="input is-large" type="text" placeholder="Title"/>
+                                <input  name="searchQuery" onChange={this.onChange} className="input" type="text" placeholder="Title"/>
                             </div>
                         </div>
                         <div className="level">
                             {/*todo add proper href later*/}
-                            <a href="https://google.com" className="level-item has-text-centered button is-block is-info is-large">Show All Movies</a>
-                            <a href="https://google.com" className="level-item has-text-centered button is-block is-info is-large">Search Movies</a>
+                            <a href="https://google.com" className="level-item has-text-centered button is-block is-info ">Show All Movies</a>
+                            <a href="https://google.com" className="level-item has-text-centered button is-block is-info ">Search Movies</a>
                         </div>
                     </div>
                 </div>
