@@ -1,5 +1,6 @@
 import React from "react";
 import * as _ from "lodash";
+import {Link} from "react-router-dom";
 
 
 class Home extends React.Component {
@@ -34,8 +35,8 @@ class Home extends React.Component {
                         </div>
                         <div className="level">
                             {/*todo add proper href later*/}
-                            <a href="https://google.com" className="level-item has-text-centered button is-block is-info is-large">Show All Movies</a>
-                            <a href="https://google.com" className="level-item has-text-centered button is-block is-info is-large">Search Movies</a>
+                            <Link to="/movies" className="level-item has-text-centered button is-block is-info is-large">Show All Movies</Link>
+                            <Link to={"/movies?query="+this.state.searchQuery} className="level-item has-text-centered button is-block is-info is-large">Search Movies</Link>
                         </div>
                     </div>
                 </div>
