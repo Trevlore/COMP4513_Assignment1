@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import Home from './Components/Home';
 import * as _ from 'lodash';
+import {Route, Switch} from "react-router";
 
 class App extends React.Component {
 
@@ -19,9 +20,11 @@ class App extends React.Component {
 
     render() {
         return (
-            <div className="App">
-                <Home/>
-            </div>
+            <main className="App">
+                <Switch>
+                    <Route path="/"  component={Home} exact/>
+                </Switch>
+            </main>
         );
     }
 }
