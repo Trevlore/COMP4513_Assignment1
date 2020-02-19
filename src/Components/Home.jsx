@@ -35,7 +35,7 @@ class Home extends React.Component {
                         </div>
                         <div className="level">
                             <Link to="/movies" className="level-item has-text-centered button is-block is-info">Show All Movies</Link>
-                            <Link to={"/movies?query="+this.state.searchQuery} className="level-item has-text-centered button is-block is-info">Search Movies</Link>
+                            <Link to={"/movies?movie="+this.state.searchQuery} className="level-item has-text-centered button is-block is-info">Search Movies</Link>
                         </div>
                     </div>
                 </div>
