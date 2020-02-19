@@ -2,10 +2,8 @@ import React from 'react';
 import * as _ from "lodash";
 import { Link } from "react-router-dom";
 import NavBar from "./NavBar"
-import FavoritesBar from './FavoritesBar';
-import MovieFilter from './MovieFilter';
 
-class MovieDetails extends React.Component {
+class MovieList extends React.Component {
     
     constructor(props){
         super(props);
@@ -28,9 +26,7 @@ class MovieDetails extends React.Component {
        //console.log(this.state.movie)
         return (
             <div>
-                <NavBar></NavBar>
-                <FavoritesBar favorites={[]}></FavoritesBar>
-                <div>
+               
                 <div className="columns">
                     <div className="column is-three-fifths box">
                         <div className="container columns">
@@ -45,9 +41,8 @@ class MovieDetails extends React.Component {
                     </div>
                 </div>
             </div>
-            </div>
         )
     }
 }
 
-export default MovieDetails;
+export default MovieList;

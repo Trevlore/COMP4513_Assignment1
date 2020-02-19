@@ -3,6 +3,7 @@ import * as _ from "lodash";
 import { Link } from "react-router-dom";
 import NavBar from "./NavBar"
 import FavoritesBar from './FavoritesBar';
+import MovieFilter from './MovieFilter';
 
 class MovieDetails extends React.Component {
     
@@ -30,7 +31,7 @@ class MovieDetails extends React.Component {
                 
                 <NavBar></NavBar>
                 <FavoritesBar favorites={[]}></FavoritesBar>
-
+                <MovieFilter></MovieFilter>
                 {/* <div className="columns">
                     <div className="column is-three-fifths box">
                         <div className="container columns">
