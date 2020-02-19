@@ -4,6 +4,7 @@ import Home from './Components/Home';
 import MovieDetails from './Components/MovieDetails';
 import * as _ from 'lodash';
 import {Route, Switch} from "react-router";
+import { Link } from 'react-router-dom';
 
 class App extends React.Component {
 
@@ -23,8 +24,8 @@ class App extends React.Component {
         return (
             <main className="App">
                 <Switch>
-                    <Route path="/"  component={Home} exact/>
-                    <Route path="/MovieDetails"  component={MovieDetails} exact/>
+                    <Route path="/" component={Home} exact/>
+                    <Route path="/MovieDetails"  component={MovieDetails} testMovie={this.state.movies[0]} exact />
                 </Switch>
             </main>
         );

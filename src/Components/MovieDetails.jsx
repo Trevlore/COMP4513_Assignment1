@@ -4,10 +4,11 @@ import { Link } from "react-router-dom";
 import NavBar from "./NavBar"
 
 class Home extends React.Component {
-
-    // state = {
-    //     searchQuery: ""
-    // };
+    
+    constructor(props){
+        super(props);
+        this.setState({movie: this.props.movie}); 
+    }
 
     // onChange = (e) => {
     //     const currElem = e.target;
@@ -18,15 +19,25 @@ class Home extends React.Component {
     // };
 
     // style = {
-    //     paddingTop: "35vh"
+    //     height: ""
     // };
 
     render() {
+       //console.log(this.state.movie)
         return (
             <div>
+                
                 <NavBar></NavBar>
+
                 <div className="columns">
-                    <div className="column  is-three-fifths box">
+                    <div className="column is-three-fifths box">
+                        <div className="container columns">
+                            <h1 className="title column is-three-fifths">Movie Title</h1>
+                            <button className="button">Add to favorites</button>
+                        </div>
+                        <div>
+                        {}
+                        </div>
                     </div>
                     <div className="column box">
                     </div>

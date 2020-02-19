@@ -1,5 +1,6 @@
 import React from "react";
 import * as _ from "lodash";
+import ticket from "../Images/fa-ticket-alt.png";
 import { Link } from "react-router-dom";
 
 
@@ -25,8 +26,8 @@ class Home extends React.Component {
         return (
             <nav class="bd-navbar navbar has-shadow">
                     <div class="navbar-brand">
-                        <span class="navbar-item">
-                            Brand
+                        <span class="navbar-item fas fa-ticket-alt">
+                            <img src={ticket} alt="fa-ticket-alt" ></img>Movie List
                         </span>
                     </div>
 
