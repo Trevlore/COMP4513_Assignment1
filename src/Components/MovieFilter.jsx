@@ -23,8 +23,8 @@ class MovieFilter extends React.Component {
     render() {
         //console.log(this.state.movie)
         return (
-            <div className="columns">
-                <div className="column">
+            
+                <div className="column is-two-fifths">
                     <div className="container box">
                         <form action="">
                             <h1 className="has-text-centered">Movie Filters</h1>
@@ -89,9 +89,7 @@ class MovieFilter extends React.Component {
                         {}
                     </div>
                 </div>
-                <div className="column is-three-fifths box">
-                </div>
-            </div>
+    
         )
     }
 }
