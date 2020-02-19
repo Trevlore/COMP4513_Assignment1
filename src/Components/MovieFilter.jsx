@@ -24,10 +24,10 @@ class MovieFilter extends React.Component {
         //console.log(this.state.movie)
         return (
             <div className="columns">
-                <div className="column  box">
-                    <div className="container columns">
+                <div className="column">
+                    <div className="container box">
                         <form action="">
-                            <h1 className="column has-text-centered">Movie Filters</h1>
+                            <h1 className="has-text-centered">Movie Filters</h1>
 
                             <label classname="label" htmlFor="">Title</label>
                             <input classname="input textarea" type="text" />
