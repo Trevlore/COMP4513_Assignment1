@@ -29,22 +29,10 @@ class MovieDetails extends React.Component {
         return (
             <div>
                 
-                <NavBar></NavBar>
-                <FavoritesBar favorites={[]}></FavoritesBar>
-                <MovieFilter></MovieFilter>
-                {/* <div className="columns">
-                    <div className="column is-three-fifths box">
-                        <div className="container columns">
-                            <h1 className="title column is-three-fifths">Movie Title</h1>
-                            <button className="button">Add to favorites</button>
-                        </div>
-                        <div>
-                        {}
-                        </div>
-                    </div>
-                    <div className="column box">
-                    </div>
-                </div>*/}
+                <NavBar/>
+                <FavoritesBar favorites={[]}/>
+                <MovieFilter/>
+
             </div> 
         )
     }

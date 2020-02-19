@@ -3,13 +3,13 @@ import * as _ from "lodash";
 import { Link } from "react-router-dom";
 import NavBar from "./NavBar"
 import FavoritesBar from './FavoritesBar';
-import MovieFilter from './MovieFilter';
+
 
 class MovieDetails extends React.Component {
-    
-    constructor(props){
+
+    constructor(props) {
         super(props);
-        this.setState({movie: this.props.movie}); 
+        this.setState({ movie: this.props.movie });
     }
 
     // onChange = (e) => {
@@ -25,26 +25,26 @@ class MovieDetails extends React.Component {
     // };
 
     render() {
-       //console.log(this.state.movie)
+        //console.log(this.state.movie)
         return (
             <div>
-                <NavBar></NavBar>
-                <FavoritesBar favorites={[]}></FavoritesBar>
+                <NavBar />
+                <FavoritesBar favorites={[]} />
                 <div>
-                <div className="columns">
-                    <div className="column is-three-fifths box">
-                        <div className="container columns">
-                            <h1 className="title column is-three-fifths">Movie Title</h1>
-                            <button className="button">Add to favorites</button>
+                    <div className="columns">
+                        <div className="column is-three-fifths box">
+                            <div className="container columns">
+                                <h1 className="title column is-three-fifths">Movie Title</h1>
+                                <button className="button">Add to favorites</button>
+                            </div>
+                            <div>
+                                {}
+                            </div>
                         </div>
-                        <div>
-                        {}
+                        <div className="column box">
                         </div>
-                    </div>
-                    <div className="column box">
                     </div>
                 </div>
-            </div>
             </div>
         )
     }
