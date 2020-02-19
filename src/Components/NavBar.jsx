@@ -4,7 +4,7 @@ import ticket from "../Images/fa-ticket-alt.png";
 import { Link } from "react-router-dom";
 
 
-class Home extends React.Component {
+class NavBar extends React.Component {
 
     // state = {
     //     searchQuery: ""
@@ -41,4 +41,4 @@ class Home extends React.Component {
     }
 }
 
-export default Home;
+export default NavBar;
