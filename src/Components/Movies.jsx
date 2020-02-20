@@ -6,30 +6,33 @@ import FavoritesBar from './FavoritesBar';
 import MovieFilter from './MovieFilter';
 import MovieList from './MovieList';
 
-class MovieDetails extends React.Component {
+class Movies extends React.Component {
 
     constructor(props) {
         super(props);
-        this.setState({ movie: this.props.movie });
+        this.setState({ movie: [] });
     }
 
-    // onChange = (e) => {
-    //     const currElem = e.target;
-    //     const key = currElem.getAttribute('name');
-    //     const newState = _.cloneDeep(this.state);
-    //     newState[key] = currElem.value;
-    //     this.setState(newState);
-    // };
+    async componentDidMount() {
+        const request = await fetch("https://www.randyconnolly.com/funwebdev/3rd/api/movie/movies-brief.php?id=ALL");
+        const JSON = request.json();
+        const newState = await _.cloneDeep(this.state);
+        newState.movies = await JSON;
+        this.setState(newState);
+    }
 
-    // style = {
-    //     height: ""
-    // };
+    getQueryParam() {
+        let urlString = window.location.href;
+        let url = new URL(urlString);
+        let rtnMe = url.searchParams.get('search') ? url.searchParams.get('search') : ""; // truthy falsy
+        console.log(rtnMe);
+        return rtnMe;
+
+    }
 
     render() {
-        //console.log(this.state.movie)
         return (
             <div>
-
                 <NavBar />
                 <FavoritesBar favorites={[]} />
                 <div className="columns">
@@ -42,4 +45,4 @@ class MovieDetails extends React.Component {
     }
 }
 
-export default MovieDetails;
+export default Movies;
