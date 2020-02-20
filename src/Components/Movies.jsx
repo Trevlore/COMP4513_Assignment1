@@ -16,10 +16,10 @@ class Movies extends React.Component {
             movies: [],
             searchParams: {
                 title: GetSearchParam("title"),
-                minYear: GetSearchParam("minYear"),
-                maxYear: GetSearchParam("maxYear"),
-                minRating: GetSearchParam("minRating"),
-                maxRating: GetSearchParam("maxRating")
+                minYear: 1900,
+                maxYear: new Date().getFullYear(),
+                minRating: 0,
+                maxRating: 10
             }
         }
     }
@@ -37,8 +37,10 @@ class Movies extends React.Component {
         this.setState(newState);
     }
 
-    changeQuery = (searchParams)=>{
-
+    updateQuery = (searchParams)=>{
+        const newState = _.cloneDeep(this.state);
+        newState.searchParams = searchParams;
+        this.setState(newState);
     };
 
     filterOnQuery = () => {
@@ -52,7 +54,7 @@ class Movies extends React.Component {
                 <FavoritesBar favorites={[]}/>
                 <div className="columns">
                     <MovieFilter
-                        changeQuery={this.changeQuery}
+                        updateQuery={this.updateQuery}
                         searchParams={this.state.searchParams}
                     />
                     <MovieList movies={this.filterOnQuery()}/>
