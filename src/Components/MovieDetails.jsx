@@ -3,6 +3,7 @@ import * as _ from "lodash";
 import { Link } from "react-router-dom";
 import NavBar from "./NavBar"
 import FavoritesBar from './FavoritesBar';
+import CastAndCrew from './CastAndCrew';
 
 
 class MovieDetails extends React.Component {
@@ -27,27 +28,32 @@ class MovieDetails extends React.Component {
     render() {
         //console.log(this.state.movie)
         return (
-            <div>
+                <div>
                 <NavBar />
                 <FavoritesBar favorites={[]} />
-                <div>
-                    <div className="columns">
-                        <div className="column is-three-fifths box">
+                    <div className="columns column has-background-grey-light">
+                        <div className="column is-three-fifths">
                             <div className="container columns">
                                 <h1 className="title column is-three-fifths">Movie Title</h1>
-                                <button className="button">Add to favorites</button>
+                                <button className="button has-background-warning">Add to favorites</button>
                             </div>
                             <div className="container columns">
                                 <figure class="column is-half image is-4by5">
                                     <img src={require("../Images/IronMan.jpg")} className="" />
                                 </figure>
+                            <div class="column is-half">
+                                <p>Details</p>
+                                <div className="tile">info</div>
+                                <div className="tile">info</div>
+                                <div className="tile">info</div>
+                            </div>
                             </div>
                         </div>
-                        <div className="column box">
-                        </div>
+                        <CastAndCrew/>
                     </div>
                 </div>
-            </div>
+   
+            
         )
     }
 }
