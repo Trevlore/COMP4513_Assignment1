@@ -24,7 +24,7 @@ class FavoritesBar extends React.Component {
         console.log(this.props.favorites.length);
         return (this.props.favorites.length > 0 ?
             this.props.favorites.map((favorite, index) =>
-                <SingleFavorite favorite={favorite} key={index}></SingleFavorite>
+                <SingleFavorite favorite={favorite} key={index}/>
             )
             : ""
         );

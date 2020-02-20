@@ -23,7 +23,7 @@ class Home extends React.Component {
 
     render() {
         return (
-            <div className="is-fullheight">
+            <div className="is-fullheight hero">
                 <div className="column is-4 is-offset-4" style={this.style}>
                     <div className="box" >
                     <h3 className="title has-text-black has-text-centered">Your Movie List</h3>

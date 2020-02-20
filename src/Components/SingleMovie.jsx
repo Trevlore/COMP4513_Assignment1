@@ -2,11 +2,8 @@ import React from 'react';
 import * as _ from "lodash";
 import { Link } from "react-router-dom";
 import NavBar from "./NavBar"
-import FavoritesBar from './FavoritesBar';
-import MovieFilter from './MovieFilter';
-import MovieList from './MovieList';
 
-class MovieDetails extends React.Component {
+class SingleMovie extends React.Component {
 
     constructor(props) {
         super(props);
@@ -28,18 +25,18 @@ class MovieDetails extends React.Component {
     render() {
         //console.log(this.state.movie)
         return (
-            <div>
-
-                <NavBar />
-                <FavoritesBar favorites={[]} />
-                <div className="columns">
-                    <MovieFilter />
-                    <MovieList />
-                </div>
-
+            <div className="columns card">
+                <img className="column is-square"></img>
+                <span className="column">Movie Title</span>
+                <span className="column">1900</span>
+                <span className="column">8.3</span>
+                <button className="column button is-1">Fav</button>
+                <Link to="/MovieDetails" className="column button is-1">Details</Link>
             </div>
+
         )
+
     }
 }
 
-export default MovieDetails;
+export default SingleMovie;
