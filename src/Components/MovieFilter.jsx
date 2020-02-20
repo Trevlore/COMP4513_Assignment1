@@ -2,20 +2,6 @@ import React from 'react';
 import * as _ from "lodash";
 
 class MovieFilter extends React.Component {
-
-    // constructor(props){
-    //     super(props);
-    //     this.setState({movie: this.props.movie}); 
-    // }
-
-    // onChange = (e) => {
-    //     const currElem = e.target;
-    //     const key = currElem.getAttribute('name');
-    //     const newState = _.cloneDeep(this.state);
-    //     newState[key] = currElem.value;
-    //     this.setState(newState);
-    // };
-
     buttonStyle = {
        "margin-right": ".5rem",
     };
@@ -61,15 +47,6 @@ class MovieFilter extends React.Component {
                             <div classname="field">
                                 <h3 classname="" htmlFor="">Rating</h3>
                                 <div classname="control">
-                                    <div>
-                                        <input type="radio" name="rating" />
-                                        <label classname="label" htmlFor="">Before</label>
-                                        <input type="range" min="1" max="10" defaultValue="5" /></div>
-                                    <div>
-                                        <input type="radio" name="rating" />
-                                        <label classname="label" htmlFor="">After</label>
-                                        <input type="range" min="1" max="10" defaultValue="5" />
-                                    </div>
                                     <div>
                                         <input type="radio" name="rating" />
                                         <label classname="label" htmlFor="">Between</label>
