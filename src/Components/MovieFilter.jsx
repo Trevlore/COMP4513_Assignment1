@@ -3,7 +3,11 @@ import * as _ from "lodash";
 
 class MovieFilter extends React.Component {
     buttonStyle = {
-       "margin-right": ".5rem",
+       marginRight: ".5rem",
+    };
+
+    onChange = (e)=>{
+
     };
 
     render() {

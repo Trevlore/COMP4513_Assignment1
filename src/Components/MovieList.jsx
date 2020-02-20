@@ -11,14 +11,6 @@ class MovieList extends React.Component {
         this.setState({ movie: this.props.movie });
     }
 
-    // onChange = (e) => {
-    //     const currElem = e.target;
-    //     const key = currElem.getAttribute('name');
-    //     const newState = _.cloneDeep(this.state);
-    //     newState[key] = currElem.value;
-    //     this.setState(newState);
-    // };
-
     overflow = {
         "max-hieght" : "100%",
         "overflow-x": "hidden",

@@ -1,40 +1,23 @@
 import React from "react";
-import * as _ from "lodash";
 import ticket from "../Images/fa-ticket-alt.png";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 
 
 class NavBar extends React.Component {
 
-    // state = {
-    //     searchQuery: ""
-    // };
-
-    // onChange = (e) => {
-    //     const currElem = e.target;
-    //     const key = currElem.getAttribute('name');
-    //     const newState = _.cloneDeep(this.state);
-    //     newState[key] = currElem.value;
-    //     this.setState(newState);
-    // };
-
-    // style = {
-    //     paddingTop: "35vh"
-    // };
-
     render() {
         return (
-            <nav class="bd-navbar navbar has-shadow">
-                    <div class="navbar-brand">
-                        <span class="navbar-item fas fa-ticket-alt">
-                            <img src={ticket} alt="fa-ticket-alt" ></img>Movie List
+            <nav className="bd-navbar navbar has-shadow">
+                    <div className="navbar-brand">
+                        <span className="navbar-item fas fa-ticket-alt">
+                            <img src={ticket} alt="fa-ticket-alt" />Movie List
                         </span>
                     </div>
 
-                    <div class="navbar-end">
-                        <a class="button navbar-item">
+                    <div className="navbar-end">
+                        <Link to={"/" /*todo add path*/} className="button navbar-item">
                             <span>About</span>
-                        </a>
+                        </Link>
                     </div>
             </nav>
         )
