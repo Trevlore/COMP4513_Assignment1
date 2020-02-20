@@ -26,7 +26,9 @@ class SingleMovie extends React.Component {
         //console.log(this.state.movie)
         return (
             <div className="columns card">
-                <img className="column is-square"></img>
+                <figure class="image is-128x128">
+                    <img src={require("../Images/IronMan.jpg")} className="" />
+                </figure>
                 <span className="column">Movie Title</span>
                 <span className="column">1900</span>
                 <span className="column">8.3</span>
