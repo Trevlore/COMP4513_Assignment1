@@ -37,8 +37,10 @@ class MovieDetails extends React.Component {
                                 <h1 className="title column is-three-fifths">Movie Title</h1>
                                 <button className="button">Add to favorites</button>
                             </div>
-                            <div>
-                                {}
+                            <div className="container columns">
+                                <figure class="column is-half image is-4by5">
+                                    <img src={require("../Images/IronMan.jpg")} className="" />
+                                </figure>
                             </div>
                         </div>
                         <div className="column box">
