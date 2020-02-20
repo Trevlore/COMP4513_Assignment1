@@ -30,6 +30,8 @@ class SingleMovie extends React.Component {
                 <span className="column">Movie Title</span>
                 <span className="column">1900</span>
                 <span className="column">8.3</span>
+                <button className="column button is-1">Fav</button>
+                <Link to="/MovieDetails" className="column button is-1">Details</Link>
             </div>
 
         )
