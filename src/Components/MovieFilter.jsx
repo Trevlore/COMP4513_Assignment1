@@ -49,15 +49,6 @@ class MovieFilter extends React.Component {
                                 <div classname="control">
                                     <div>
                                         <input type="radio" name="rating" />
-                                        <label classname="label" htmlFor="">Before</label>
-                                        <input type="range" min="1" max="10" defaultValue="5" /></div>
-                                    <div>
-                                        <input type="radio" name="rating" />
-                                        <label classname="label" htmlFor="">After</label>
-                                        <input type="range" min="1" max="10" defaultValue="5" />
-                                    </div>
-                                    <div>
-                                        <input type="radio" name="rating" />
                                         <label classname="label" htmlFor="">Between</label>
                                         <input type="range" min="1" max="10" defaultValue="5" />
                                         <input type="range" min="1" max="10" defaultValue="5" />
