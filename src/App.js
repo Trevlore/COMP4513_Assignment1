@@ -3,8 +3,7 @@ import './App.css';
 import Home from './Components/Home';
 import MovieDetails from './Components/MovieDetails';
 import Movies from './Components/Movies';
-import * as _ from 'lodash';
-import {Route, Switch} from "react-router";
+import {Route, Switch} from "react-router-dom";
 
 class App extends React.Component {
 
@@ -13,11 +12,14 @@ class App extends React.Component {
             <main className="App">
                 <Switch>
                     <Route path="/" component={Home} exact/>
-                    <Route path="/MovieDetails"  component={MovieDetails} exact />
-                    <Route path="/Movies"  component={Movies} exact />
+                    <Route path="/Movies">
+                        <Movies/>
+                    </Route>
+                    <Route path="/Movies/Details"  component={MovieDetails} exact />
                 </Switch>
             </main>
         );
+
     }
 }
 
