@@ -2,20 +2,6 @@ import React from 'react';
 import * as _ from "lodash";
 
 class MovieFilter extends React.Component {
-
-    // constructor(props){
-    //     super(props);
-    //     this.setState({movie: this.props.movie}); 
-    // }
-
-    // onChange = (e) => {
-    //     const currElem = e.target;
-    //     const key = currElem.getAttribute('name');
-    //     const newState = _.cloneDeep(this.state);
-    //     newState[key] = currElem.value;
-    //     this.setState(newState);
-    // };
-
     buttonStyle = {
        "margin-right": ".5rem",
     };
