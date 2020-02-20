@@ -22,7 +22,9 @@ class MovieList extends React.Component {
     overflow = {
         "max-hieght" : "100%",
         "overflow-x": "hidden",
-        "overflow-y": "scroll"
+        "overflow-y": "scroll",
+        "flex-grow" : "1",
+        height: "50vw"
     };
 
     render() {
@@ -30,7 +32,7 @@ class MovieList extends React.Component {
         return (
             <div className="column">
 
-                <div className="box container">
+                <div className="box container" >
                     <h1 className="title columns has-text-centered">Movie List</h1>
                     <div>
                         <div className="columns">
@@ -39,6 +41,24 @@ class MovieList extends React.Component {
                             <h2 className="column">Rating</h2>
                         </div>
                         <div style={this.overflow}>
+                            <SingleMovie />
+                            <SingleMovie />
+                            <SingleMovie />
+                            <SingleMovie />
+                            <SingleMovie />
+                            <SingleMovie />
+                            <SingleMovie />
+                            <SingleMovie />
+                            <SingleMovie />
+                            <SingleMovie />
+                            <SingleMovie />
+                            <SingleMovie />
+                            <SingleMovie />
+                            <SingleMovie />
+                            <SingleMovie />
+                            <SingleMovie />
+                            <SingleMovie />
+                            <SingleMovie />
                             <SingleMovie />
                             <SingleMovie />
                             <SingleMovie />

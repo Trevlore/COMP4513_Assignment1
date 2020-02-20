@@ -16,8 +16,8 @@ class MovieFilter extends React.Component {
     //     this.setState(newState);
     // };
 
-    style = {
-       "margin-right": ".5rem"
+    buttonStyle = {
+       "margin-right": ".5rem",
     };
 
     render() {
@@ -80,8 +80,8 @@ class MovieFilter extends React.Component {
 
                             </div>
                             <div className="control has-text-centered">
-                                <button style={this.style} className="button">Filter</button>
-                                <button style={this.style} className="button">Clear</button>
+                                <button style={this.buttonStyle} className="button">Filter</button>
+                                <button style={this.buttonStyle} className="button">Clear</button>
                             </div>
                         </form>
                     </div>
