@@ -1,43 +1,61 @@
 import React from 'react';
 import * as _ from "lodash";
-import { Link } from "react-router-dom";
 import NavBar from "./NavBar"
 import FavoritesBar from './FavoritesBar';
 import MovieFilter from './MovieFilter';
 import MovieList from './MovieList';
+import {GetSearchParam} from "../Helpers/Helper";
+import {withRouter} from "react-router";
 
 class Movies extends React.Component {
 
     constructor(props) {
         super(props);
-        this.setState({ movie: [] });
+        console.log(props.location.search);
+        this.state = {
+            movies: [],
+            searchParams: {
+                title: GetSearchParam("title"),
+                minYear: GetSearchParam("minYear"),
+                maxYear: GetSearchParam("maxYear"),
+                minRating: GetSearchParam("minRating"),
+                maxRating: GetSearchParam("maxRating")
+            }
+        }
     }
 
     async componentDidMount() {
         const request = await fetch("https://www.randyconnolly.com/funwebdev/3rd/api/movie/movies-brief.php?id=ALL");
-        const JSON = request.json();
+        const moviesArray = request.json();
         const newState = await _.cloneDeep(this.state);
-        newState.movies = await JSON;
+        let parsedMovies = await moviesArray;
+        parsedMovies.map(x => {
+            x.release_date = new Date(x.release_date);
+            return x;
+        });
+        newState.movies = parsedMovies;
         this.setState(newState);
     }
 
-    getQueryParam() {
-        let urlString = window.location.href;
-        let url = new URL(urlString);
-        let rtnMe = url.searchParams.get('search') ? url.searchParams.get('search') : ""; // truthy falsy
-        console.log(rtnMe);
-        return rtnMe;
+    changeQuery = (searchParams)=>{
 
-    }
+    };
+
+    filterOnQuery = () => {
+        return [];
+    };
 
     render() {
         return (
             <div>
-                <NavBar />
-                <FavoritesBar favorites={[]} />
+                <NavBar/>
+                <FavoritesBar favorites={[]}/>
                 <div className="columns">
-                    <MovieFilter />
-                    <MovieList />
+                    <MovieFilter
+                        changeQuery={this.changeQuery}
+                        searchParams={this.state.searchParams}
+                    />
+                    <MovieList movies={this.filterOnQuery()}/>
                 </div>
 
             </div>
@@ -45,4 +63,4 @@ class Movies extends React.Component {
     }
 }
 
-export default Movies;
+export default withRouter(Movies);

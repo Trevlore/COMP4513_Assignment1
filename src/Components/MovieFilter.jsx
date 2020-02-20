@@ -19,50 +19,38 @@ class MovieFilter extends React.Component {
                         <form action="">
                             <h1 className="has-text-centered">Movie Filters</h1>
 
-                            <div classname="field">
-                                <label classname="label" htmlFor="#TitleFilter">Title</label>
-                                <div classname="control">
-                                    <input className="input" id="TitleFilter" type="text" />
+                            <div className="field">
+                                <label className="label" htmlFor="#TitleFilter">Title</label>
+                                <div className="control">
+                                    <input className="input" name="title" type="text" onChange={this.onChange}/>
                                 </div>
                             </div>
 
-                            <div classname="field">
-                                <h3 classname="" htmlFor="">Year</h3>
-                                <div classname="control">
-                                    <div className="">
-                                        <input classname="column" type="radio" name="year" />
-                                        <label classname="box column" htmlFor="">Before</label>
-                                        <div className="column is-half is-offset-half"><input className='input' type="text" /></div>
-                                    </div>
-                                    <div className="">
-                                        <input classname="" type="radio" name="year" />
-                                        <label classname="label " htmlFor="">After</label>
-                                        <div className="column is-half is-offset-half"><input className='input' type="text" /></div>
-                                    </div>
+                            <div className="field">
+                                <h3 className="" htmlFor="">Year</h3>
+                                <div className="control">
                                     <div>
-                                        <input type="radio" name="year" />
-                                        <label classname="label" htmlFor="">Between</label>
-                                        <div className="column is-half is-offset-half" ><input className="input" type="text" /></div>
-                                        <div className="column is-half is-offset-half"><input className="input" type="text" /></div>
+                                        <label className="label" htmlFor="">Between</label>
+                                        <div className="column is-half is-offset-half" ><input className="input" type="text" onChange={this.onChange}/></div>
+                                        <div className="column is-half is-offset-half"><input className="input" type="text" onChange={this.onChange}/></div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div classname="field">
-                                <h3 classname="" htmlFor="">Rating</h3>
-                                <div classname="control">
+                            <div className="field">
+                                <h3 className="" htmlFor="">Rating</h3>
+                                <div className="control">
                                     <div>
                                         <input type="radio" name="rating" />
-                                        <label classname="label" htmlFor="">Between</label>
-                                        <input type="range" min="1" max="10" defaultValue="5" />
-                                        <input type="range" min="1" max="10" defaultValue="5" />
+                                        <label className="label" htmlFor="">Between</label>
+                                        <input type="range" min="1" max="10" defaultValue="5" onChange={this.onChange}/>
+                                        <input type="range" min="1" max="10" defaultValue="5" onChange={this.onChange}/>
                                     </div>
                                 </div>
 
                             </div>
                             <div className="control has-text-centered">
-                                <button style={this.buttonStyle} className="button">Filter</button>
-                                <button style={this.buttonStyle} className="button">Clear</button>
+                                <button style={this.buttonStyle} name="clear" onClick={this.onChange} className="button">Clear</button>
                             </div>
                         </form>
                     </div>

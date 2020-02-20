@@ -1,7 +1,5 @@
 import React from 'react';
-import * as _ from "lodash";
 import SingleMovie from "./SingleMovie";
-import { Link } from "react-router-dom";
 
 
 class MovieList extends React.Component {
@@ -12,15 +10,28 @@ class MovieList extends React.Component {
     }
 
     overflow = {
-        "max-hieght" : "100%",
-        "overflow-x": "hidden",
-        "overflow-y": "scroll",
-        "flex-grow" : "1",
+        maxHeight : "100%",
+        overflowX: "hidden",
+        overflowY: "scroll",
+        flexGrow : "1",
         height: "50vw"
     };
 
+    RenderMovies = () => {
+        return this.props.movies.map((x)=>{
+            return (
+                <SingleMovie
+                    key={x.id}
+                    id={x.id}
+                    title={x.title}
+                    releaseDate={x.release_date}
+                    rating={x.ratings.average}
+                />
+                )
+        });
+    };
+
     render() {
-        //console.log(this.state.movie)
         return (
             <div className="column">
 
@@ -33,42 +44,8 @@ class MovieList extends React.Component {
                             <h2 className="column">Rating</h2>
                         </div>
                         <div style={this.overflow}>
-                            <SingleMovie />
-                            <SingleMovie />
-                            <SingleMovie />
-                            <SingleMovie />
-                            <SingleMovie />
-                            <SingleMovie />
-                            <SingleMovie />
-                            <SingleMovie />
-                            <SingleMovie />
-                            <SingleMovie />
-                            <SingleMovie />
-                            <SingleMovie />
-                            <SingleMovie />
-                            <SingleMovie />
-                            <SingleMovie />
-                            <SingleMovie />
-                            <SingleMovie />
-                            <SingleMovie />
-                            <SingleMovie />
-                            <SingleMovie />
-                            <SingleMovie />
-                            <SingleMovie />
-                            <SingleMovie />
-                            <SingleMovie />
-                            <SingleMovie />
-                            <SingleMovie />
-                            <SingleMovie />
-                            <SingleMovie />
-                            <SingleMovie />
-                            <SingleMovie />
-                            <SingleMovie />
-                            <SingleMovie />
-                            <SingleMovie />
-                            <SingleMovie />
-                            <SingleMovie />
-                            <SingleMovie />
+                            <this.RenderMovies/>
+
                         </div>
 
                     </div>
