@@ -12,10 +12,8 @@ class App extends React.Component {
             <main className="App">
                 <Switch>
                     <Route path="/" component={Home} exact/>
-                    <Route path="/Movies">
-                        <Movies/>
-                    </Route>
-                    <Route path="/Movies/Details"  component={MovieDetails} exact />
+                    <Route path="/Movies" component={Movies} exact/>
+                    <Route path="/Movies/Details" component={MovieDetails} exact/>
                 </Switch>
             </main>
         );

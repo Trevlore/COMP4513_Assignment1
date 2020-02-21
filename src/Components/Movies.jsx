@@ -57,7 +57,6 @@ class Movies extends React.Component {
                     />
                     <MovieList movies={this.filterOnQuery()}/>
                 </div>
-
             </div>
         )
     }
