@@ -1,7 +1,7 @@
 import React from "react";
-import * as _ from "lodash";
 import SingleFavorite from "./SingleFavorite";
-import { Link } from "react-router-dom";
+//import * as _ from "lodash";
+//import { Link } from "react-router-dom";
 
 
 class FavoritesBar extends React.Component {

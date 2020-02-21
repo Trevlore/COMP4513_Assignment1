@@ -1,7 +1,7 @@
 import React from 'react';
-import * as _ from "lodash";
 import { Link } from "react-router-dom";
-import NavBar from "./NavBar"
+//import * as _ from "lodash";
+//import NavBar from "./NavBar"
 
 class SingleMovie extends React.Component {
 
@@ -27,7 +27,7 @@ class SingleMovie extends React.Component {
         return (
             <div className="columns card">
                 <figure class="image is-128x128">
-                    <img src={require("../Images/IronMan.jpg")} className="" />
+                    <img src={require("../Images/IronMan.jpg")} alt="ironman" className="" />
                 </figure>
                 <span className="column">Movie Title</span>
                 <span className="column">1900</span>

@@ -1,6 +1,6 @@
 import React from "react";
-import * as _ from "lodash";
-import { Link } from "react-router-dom";
+// import * as _ from "lodash";
+//import { Link } from "react-router-dom";
 
 
 class CastAndCrew extends React.Component {
@@ -14,9 +14,9 @@ class CastAndCrew extends React.Component {
     tapHandler = (e) => {
         const currElem = e.currentTarget;
         const id = currElem.getAttribute('id');
-        if (id == this.state.passive) {
-            document.getElementById(this.state.active).classList.toggle('is-active');
-            document.getElementById(this.state.passive).classList.toggle('is-active');
+        if (id === this.state.passive) {
+            this.toggleActive(this.state.active);
+            this.toggleActive(this.state.passive);
             this.setState({
                 active: this.state.passive,
                 passive: this.state.active
@@ -36,10 +36,10 @@ class CastAndCrew extends React.Component {
     }
 
     render() {
-        
+
         return (
             <div id="CastAndCrew" className="column container box">
-                <div class="tabs">
+                <div className="tabs">
                     <ul>
                         <li id='Cast' className="is-active" onClick={this.tapHandler}><a>Cast</a></li>
                         <li id='Crew' className="" onClick={this.tapHandler}><a>Crew</a></li>
