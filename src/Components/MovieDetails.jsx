@@ -17,12 +17,12 @@ class MovieDetails extends React.Component {
                                 <button className="button has-background-warning">Add to favorites</button>
                             </div>
                             <div className="container columns">
-                                <figure class="column is-half image is-4by5">
+                                <figure className="column is-half image is-4by5">
                                     <img src={require("../Images/IronMan.jpg")} className="" />
                                 </figure>
-                            <div class="column is-half">
+                            <div className="column is-half">
                                 <p>Details</p>
-                                <div className="tile">info</div>
+                                <div className="tile">info</div>K
                                 <div className="tile">info</div>
                                 <div className="tile">info</div>
                             </div>
