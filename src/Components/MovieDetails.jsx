@@ -18,7 +18,7 @@ class MovieDetails extends React.Component {
                             </div>
                             <div className="container columns">
                                 <figure className="column is-half image is-4by5">
-                                    <img src={require("../Images/IronMan.jpg")} className="" />
+                                    <img src={require("../Images/IronMan.jpg")} alt="ironman" className="" />
                                 </figure>
                             <div className="column is-half">
                                 <p>Details</p>
