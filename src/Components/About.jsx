@@ -6,8 +6,9 @@ class About extends React.Component {
             <React.Fragment>
                 <ul>
                     <li><a href="https://bulma.io/">Bulma CSS</a> </li>
-                    <li><a href="https://github.com/sghall/react-compound-slider">react-compound-slider</a> </li>
-                    <li><a href="https://reacttraining.com/react-router/web/example/basic">React Router</a> </li>
+                    <li><a href="https://reacttraining.com/react-router/web/example/basic">React Router</a></li>
+                    <li><a href="https://www.npmjs.com/package/react-input-range">react-input-range</a></li>
+
 
                 </ul>
             </React.Fragment>

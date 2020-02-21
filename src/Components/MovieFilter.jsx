@@ -1,12 +1,17 @@
 import React from 'react';
 import * as _ from "lodash";
 import {defaultQueryParams} from "./Movies";
+import InputRange from 'react-input-range';
+import "../Style/Slider.css"
 
 class MovieFilter extends React.Component {
     buttonStyle = {
         marginRight: ".5rem",
     };
-
+    sliderRange = {
+        min: 0,
+        max: 10
+    };
     selectorOptions = {
         min: 0,
         max: 1,
@@ -18,7 +23,28 @@ class MovieFilter extends React.Component {
         ratingSelected: this.selectorOptions.between
     };
 
-    updateQueryParams = (e) => {
+    updateQueryParamsRatingBetween = (value) => {
+        const newParams = _.cloneDeep(this.props.searchParams);
+        newParams.minRating = value.min;
+        newParams.maxRating = value.max;
+        this.props.updateQuery(newParams)
+    };
+
+    updateQueryParamsRatingMin = (value) => {
+        const newParams = _.cloneDeep(this.props.searchParams);
+        newParams.minRating = value;
+        newParams["maxRating"] = defaultQueryParams.maxRating;
+        this.props.updateQuery(newParams)
+    };
+
+    updateQueryParamsRatingMax= (value) => {
+        const newParams = _.cloneDeep(this.props.searchParams);
+        newParams.maxRating = value;
+        newParams.minRating = defaultQueryParams.minRating;
+        this.props.updateQuery(newParams)
+    };
+
+    updateQueryParamsYear = (e) => {
         const curr = e.target;
         const name = curr.name;
         const value = curr.value;
@@ -29,17 +55,10 @@ class MovieFilter extends React.Component {
         } else if (this.state.yearSelected === this.selectorOptions.max) {
             newParams.maxYear = defaultQueryParams.maxYear;
         }
-
-        if (this.state.ratingSelected === this.selectorOptions.min) {
-            newParams.minRating = defaultQueryParams.minRating;
-        } else if (this.state.ratingSelected === this.selectorOptions.max) {
-            newParams.maxRating = defaultQueryParams.maxRating;
-        }
         this.props.updateQuery(newParams);
     };
 
     changeInput = (e) => {
-        console.log(e);
         const curr = e.target;
         const name = curr.name;
         const value = Number(curr.value);
@@ -58,7 +77,7 @@ class MovieFilter extends React.Component {
                         <label className="label" htmlFor="TitleFilter">Title</label>
                         <div className="control">
                             <input value={this.props.searchParams.title} id="TitleFilter"
-                                   className="input" name="title" type="text" onChange={this.updateQueryParams}/>
+                                   className="input" name="title" type="text" onChange={this.updateQueryParamsYear}/>
                         </div>
                     </div>
 
@@ -74,7 +93,7 @@ class MovieFilter extends React.Component {
                             </div>
                             <div className="column level-right is-4">
                                 <input name="minYear" value={this.props.searchParams.maxYear}
-                                       className="input" type="number" onChange={this.updateQueryParams}
+                                       className="input" type="number" onChange={this.updateQueryParamsYear}
                                        disabled={this.state.yearSelected !== this.selectorOptions.max}
                                 />
                             </div>
@@ -89,7 +108,7 @@ class MovieFilter extends React.Component {
                             </div>
                             <div className="column level-right is-4">
                                 <input name="maxYear" value={this.props.searchParams.minYear}
-                                       className="input" type="number" onChange={this.updateQueryParams}
+                                       className="input" type="number" onChange={this.updateQueryParamsYear}
                                        disabled={this.state.yearSelected !== this.selectorOptions.min}/>
                             </div>
                         </div>
@@ -103,14 +122,14 @@ class MovieFilter extends React.Component {
                             </div>
                             <div className="column level-item is-2">
                                 <input name="minYear" value={this.props.searchParams.minYear}
-                                       className="input" type="number" onChange={this.updateQueryParams}
+                                       className="input" type="number" onChange={this.updateQueryParamsYear}
                                        disabled={this.state.yearSelected !== this.selectorOptions.between}
                                 />
                             </div>
                             -
                             <div className="column level-item is-2 ">
                                 <input name="maxYear" value={this.props.searchParams.maxYear}
-                                       className="input" type="number" onChange={this.updateQueryParams}
+                                       className="input" type="number" onChange={this.updateQueryParamsYear}
                                        disabled={this.state.yearSelected !== this.selectorOptions.between}
                                 />
                             </div>
@@ -123,27 +142,28 @@ class MovieFilter extends React.Component {
                             <div className="level-item level-left">
                                 <input name="ratingSelected" type="radio" id="ratingMax"
                                        value={this.selectorOptions.max} onChange={this.changeInput}
-                                       checked={this.state.ratingSelected === this.selectorOptions.between}/>
+                                       checked={this.state.ratingSelected === this.selectorOptions.max}/>
                                 <label className="label" htmlFor="ratingMax">Less than</label>
                             </div>
-                            <p>{this.props.searchParams.minRating}</p>
-                            <input type="range" min="1" max="10" name="maxRating"
-                                   value={this.props.searchParams.maxRating}
-                                   onChange={this.updateQueryParams}
-                                   disabled={this.state.ratingSelected === this.selectorOptions.max}/>
+                            <InputRange minValue={this.sliderRange.min} maxValue={this.sliderRange.max}
+                                        onChange={this.updateQueryParamsRatingMax}
+                                        value={this.props.searchParams.maxRating}
+                                        disabled={this.state.ratingSelected !== this.selectorOptions.max}
+                            />
                         </div>
                         <div className="control level">
                             <div className="level-item level-left">
                                 <input name="ratingSelected" type="radio" id="ratingMin"
                                        value={this.selectorOptions.min} onChange={this.changeInput}
-                                       checked={this.state.ratingSelected === this.selectorOptions.between}/>
+                                       checked={this.state.ratingSelected === this.selectorOptions.min}/>
                                 <label className="label" htmlFor="ratingMin">Greater than</label>
                             </div>
-                            <p>{this.props.searchParams.maxRating}</p>
-                            <input type="range" min="1" max="10" name="minRating"
-                                   value={this.props.searchParams.minRating}
-                                   onChange={this.updateQueryParams}
-                                   disabled={this.state.ratingSelected === this.selectorOptions.min}/>
+                            <InputRange minValue={this.sliderRange.min} maxValue={this.sliderRange.max}
+                                        onChange={this.updateQueryParamsRatingMin}
+                                        value={this.props.searchParams.minRating}
+                                        disabled={this.state.ratingSelected !== this.selectorOptions.min}
+                            />
+
                         </div>
                         <div className="control level">
                             <div className="level-item level-left">
@@ -153,20 +173,21 @@ class MovieFilter extends React.Component {
                                        checked={this.state.ratingSelected === this.selectorOptions.between}/>
                                 <label className="label" htmlFor="ratingBetween">Between</label>
                             </div>
-                            <p>{this.props.searchParams.minRating} - {this.props.searchParams.maxRating}</p>
-                            <input type="range" min="1" max="10" name="minRating"
-                                   value={this.props.searchParams.minRating}
-                                   onChange={this.updateQueryParams}
-                                   disabled={this.state.ratingSelected === this.selectorOptions.between}/>
-                            <input type="range" min="1" max="10" name="maxRating"
-                                   value={this.props.searchParams.maxRating}
-                                   onChange={this.updateQueryParams}
-                                   disabled={this.state.ratingSelected === this.selectorOptions.between}/>
+                            <InputRange minValue={this.sliderRange.min} maxValue={this.sliderRange.max} name="ratingBetween"
+                                        onChange={this.updateQueryParamsRatingBetween}
+                                        value={{
+                                            min: this.props.searchParams.minRating,
+                                            max: this.props.searchParams.maxRating
+                                        }}
+                                        disabled={this.state.ratingSelected !== this.selectorOptions.between}
+                            />
+
                         </div>
 
                     </div>
+
                     <div className="control has-text-centered">
-                        <button style={this.buttonStyle} name="clear" onClick={this.updateQueryParams}
+                        <button style={this.buttonStyle} name="clear" onClick={this.updateQueryParamsYear}
                                 className="button">Clear
                         </button>
                     </div>
@@ -178,3 +199,4 @@ class MovieFilter extends React.Component {
 }
 
 export default MovieFilter;
+
