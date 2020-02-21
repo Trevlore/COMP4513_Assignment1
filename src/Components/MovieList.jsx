@@ -6,7 +6,7 @@ class MovieList extends React.Component {
 
     constructor(props) {
         super(props);
-        this.setState({ movie: this.props.movie });
+        this.state = { movie: this.props.movie };
     }
 
     overflow = {
