@@ -7,22 +7,28 @@ import MovieList from './MovieList';
 import {GetSearchParam} from "../Helpers/Helper";
 import {withRouter} from "react-router";
 
+export const defaultQueryParams = {
+    title: "",
+    minYear: 1900,
+    maxYear: new Date().getFullYear(),
+    minRating: 0,
+    maxRating: 10
+};
+
 class Movies extends React.Component {
 
     constructor(props) {
         super(props);
         console.log(props.location.search);
+        const searchParams = _.cloneDeep(defaultQueryParams);
+        searchParams.title =GetSearchParam("title");
         this.state = {
             movies: [],
-            searchParams: {
-                title: GetSearchParam("title"),
-                minYear: 1900,
-                maxYear: new Date().getFullYear(),
-                minRating: 0,
-                maxRating: 10
-            }
+            searchParams: searchParams
         }
     }
+
+
 
     async componentDidMount() {
         const request = await fetch("https://www.randyconnolly.com/funwebdev/3rd/api/movie/movies-brief.php?id=ALL");
