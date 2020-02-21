@@ -1,14 +1,19 @@
 import React from "react";
 import * as _ from "lodash";
 import { Link } from "react-router-dom";
+import { Redirect } from 'react-router-dom'
+
 
 
 class Home extends React.Component {
 
-    state = {
-        searchQuery: ""
-    };
+    constructor(){
+        super();
+        this.state  = {searchQuery: "", searchEnter: null}; 
+        this.onKeyDown = this.onKeyDown.bind(this);
+    }
 
+   
     onChange = (e) => {
         const currElem = e.target;
         const key = currElem.getAttribute('name');
@@ -22,16 +27,36 @@ class Home extends React.Component {
     };
 
     linkBottomRight = {
-        "border-bottom-right-radius": "0",
-        "border-top-right-radius": "0"
+        "borderBottomRightRadius": "0",
+        "borderTopRightRadius": "0"
     };
 
     linkBottomLeft = {
-        "border-bottom-left-radius": "0",
-        "border-top-left-radius": "0"
+        "borderBottomLeftRadius": "0",
+        "borderTopLeftRadius": "0"
     };
 
+
+    onKeyDown(e) {
+        if (e.key === 'Enter') {
+            this.setState({searchQuery: this.state.searchQuery, searchEnter : true });
+        }
+    }
+
     render() {
+        if (this.state.searchEnter) {
+           return this.renderKeypress();
+          }
+          else{
+            return this.renderNormal();
+          }
+
+    }
+    renderKeypress() {
+        return <Redirect push to={"/movies?movie=" + this.state.searchQuery} />
+    }
+
+    renderNormal() {
         return (
             <div className="is-fullheight hero">
                 <div className="column is-4 is-offset-4" style={this.style}>
@@ -40,7 +65,7 @@ class Home extends React.Component {
 
                         <div className="field">
                             <div className="control">
-                                <input name="searchQuery" onChange={this.onChange} className="input" type="text" placeholder="Title" />
+                                <input name="searchQuery" onChange={this.onChange} onKeyDown={this.onKeyDown} className="input" type="text" placeholder="Title" />
                             </div>
                         </div>
                         <div className="level">
