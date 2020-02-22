@@ -1,9 +1,7 @@
 import React from "react";
 import * as _ from "lodash";
-import { Link } from "react-router-dom";
-import { Redirect, Route } from 'react-router-dom';
-import Movies from './Movies';
-import { Transition, CSSTransition, TransitionGroup } from 'react-transition-group';
+import { Redirect} from 'react-router-dom';
+import {CSSTransition} from 'react-transition-group';
 
 import "../Style/Home.css"
 

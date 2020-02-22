@@ -1,6 +1,6 @@
 import React from "react";
 import SingleFavorite from "./SingleFavorite";
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import {TransitionGroup } from 'react-transition-group';
 //import * as _ from "lodash";
 //import { Link } from "react-router-dom";
 
@@ -24,7 +24,7 @@ class FavoritesBar extends React.Component {
     }
 
     renderList() {
-        console.log(this.props.favorites.length);
+        //console.log(this.props.favorites.length);
         return (this.props.favorites.length > 0 ?
             this.props.favorites.map((favorite, index) =>
                 <SingleFavorite favorite={favorite} key={index} />

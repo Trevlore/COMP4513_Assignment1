@@ -1,6 +1,6 @@
 import React from 'react';
 import SingleMovie from "./SingleMovie";
-import {CSSTransition} from 'react-transition-group';
+//import {CSSTransition} from 'react-transition-group';
 
 class MovieList extends React.Component {
 

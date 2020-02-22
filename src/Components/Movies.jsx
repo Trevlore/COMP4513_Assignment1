@@ -37,19 +37,23 @@ class Movies extends React.Component {
             const newState = await _.cloneDeep(this.state);
             let parsedMovies = await moviesArray;
 
-            localStorage.setItem('movies', JSON.stringify(parsedMovies));
-
             parsedMovies.map(x => {
                 x.release_date = new Date(x.release_date);
                 return x;
             });
+            
+            localStorage.setItem('movies', JSON.stringify(parsedMovies));
+
             newState.movies = parsedMovies;
             this.setState(newState);
             
         } else {
-
             const newState = _.cloneDeep(this.state);
             newState.movies = JSON.parse(localStorage.getItem('movies'));
+            newState.movies.map(x => {
+                x.release_date = new Date(x.release_date);
+                return x;
+            });
             this.setState(newState);
         }
 
