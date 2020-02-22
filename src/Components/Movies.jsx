@@ -4,8 +4,9 @@ import NavBar from "./NavBar"
 import FavoritesBar from './FavoritesBar';
 import MovieFilter from './MovieFilter';
 import MovieList from './MovieList';
-import { GetSearchParam } from "../Helpers/Helper";
-import { withRouter } from "react-router";
+import {generateRegex, getSearchParam} from "../Helpers/Helper";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faStroopwafel} from "@fortawesome/free-solid-svg-icons";
 
 export const defaultQueryParams = {
     title: "",
@@ -19,16 +20,14 @@ class Movies extends React.Component {
 
     constructor(props) {
         super(props);
-        console.log(props.location.search);
         const searchParams = _.cloneDeep(defaultQueryParams);
-        searchParams.title = GetSearchParam("title");
+        searchParams.title = getSearchParam("title");
         this.state = {
             movies: [],
-            searchParams: searchParams
+            searchParams: searchParams,
+            isLoading: true
         }
     }
-
-
 
     async componentDidMount() {
         if (!localStorage.getItem('movies')) {
@@ -65,25 +64,37 @@ class Movies extends React.Component {
         this.setState(newState);
     };
 
-    filterOnQuery = () => {
-        return this.state.movies;
+    filterOnQuery () {
+        return this.state.movies.filter((x) => {
+            return generateRegex(this.state.searchParams.title).test(x.title) &&
+                Number(x.release_date.getFullYear()) >= this.state.searchParams.minYear &&
+                Number(x.release_date.getFullYear()) <= this.state.searchParams.maxYear &&
+                Number(x.ratings.average) >= this.state.searchParams.minRating &&
+                Number(x.ratings.average) <= this.state.searchParams.maxRating;
+
+
+        });
     };
 
     render() {
+        const movieList = this.filterOnQuery();
         return (
             <div>
-                <NavBar />
-                <FavoritesBar favorites={[]} />
+                <NavBar/>
+                <FavoritesBar favorites={[]}/>
                 <div className="columns">
                     <MovieFilter
                         updateQuery={this.updateQuery}
                         searchParams={this.state.searchParams}
                     />
-                    <MovieList movies={this.filterOnQuery()} />
+                    <div className="column has-text-centered">
+                        {this.state.isLoading ? <FontAwesomeIcon icon={faStroopwafel} className="fa-spin fa-10x"/> :
+                            <MovieList movies={movieList}/>}
+                    </div>
                 </div>
             </div>
         )
     }
 }
 
-export default withRouter(Movies);
+export default Movies;

@@ -59,6 +59,14 @@ class MovieFilter extends React.Component {
         this.props.updateQuery(newParams);
     };
 
+    updateQueryParamsTitle = (e) => {
+        const curr = e.target;
+        const name = curr.name;
+        const newParams = _.cloneDeep(this.props.searchParams);
+        newParams[name] = curr.value;
+        this.props.updateQuery(newParams);
+    };
+
     changeInput = (e) => {
         const curr = e.target;
         const name = curr.name;
@@ -72,13 +80,13 @@ class MovieFilter extends React.Component {
         return (
             <div className="column is-two-fifths">
                 <div className="container box">
-                    <h1 className="has-text-centered">Movie Filters</h1>
+                    <h1 className="title has-text-centered">Movie Filters</h1>
 
                     <div className="field">
-                        <label className="label" htmlFor="TitleFilter">Title</label>
+                        <label className="title is-3" htmlFor="TitleFilter">Title</label>
                         <div className="control">
                             <input value={this.props.searchParams.title} id="TitleFilter"
-                                   className="input" name="title" type="text" onChange={this.updateQueryParamsYear}/>
+                                   className="input" name="title" type="text" onChange={this.updateQueryParamsTitle}/>
                         </div>
                     </div>
 
