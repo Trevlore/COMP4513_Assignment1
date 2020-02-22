@@ -53,6 +53,7 @@ class Movies extends React.Component {
                 x.release_date = new Date(x.release_date);
                 return x;
             });
+            newState.isLoading = false;
             this.setState(newState);
         }
 
