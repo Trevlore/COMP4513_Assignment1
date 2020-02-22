@@ -4,8 +4,8 @@ import NavBar from "./NavBar"
 import FavoritesBar from './FavoritesBar';
 import MovieFilter from './MovieFilter';
 import MovieList from './MovieList';
-import {GetSearchParam} from "../Helpers/Helper";
-import {withRouter} from "react-router";
+import { GetSearchParam } from "../Helpers/Helper";
+import { withRouter } from "react-router";
 
 export const defaultQueryParams = {
     title: "",
@@ -21,7 +21,7 @@ class Movies extends React.Component {
         super(props);
         console.log(props.location.search);
         const searchParams = _.cloneDeep(defaultQueryParams);
-        searchParams.title =GetSearchParam("title");
+        searchParams.title = GetSearchParam("title");
         this.state = {
             movies: [],
             searchParams: searchParams
@@ -31,19 +31,31 @@ class Movies extends React.Component {
 
 
     async componentDidMount() {
-        const request = await fetch("https://www.randyconnolly.com/funwebdev/3rd/api/movie/movies-brief.php?id=ALL");
-        const moviesArray = request.json();
-        const newState = await _.cloneDeep(this.state);
-        let parsedMovies = await moviesArray;
-        parsedMovies.map(x => {
-            x.release_date = new Date(x.release_date);
-            return x;
-        });
-        newState.movies = parsedMovies;
-        this.setState(newState);
+        if (!localStorage.getItem('movies')) {
+            const request = await fetch("https://www.randyconnolly.com/funwebdev/3rd/api/movie/movies-brief.php?id=ALL");
+            const moviesArray = request.json();
+            const newState = await _.cloneDeep(this.state);
+            let parsedMovies = await moviesArray;
+
+            localStorage.setItem('movies', JSON.stringify(parsedMovies));
+
+            parsedMovies.map(x => {
+                x.release_date = new Date(x.release_date);
+                return x;
+            });
+            newState.movies = parsedMovies;
+            this.setState(newState);
+            
+        } else {
+
+            const newState = _.cloneDeep(this.state);
+            newState.movies = JSON.parse(localStorage.getItem('movies'));
+            this.setState(newState);
+        }
+
     }
 
-    updateQuery = (searchParams)=>{
+    updateQuery = (searchParams) => {
         const newState = _.cloneDeep(this.state);
         newState.searchParams = searchParams;
         this.setState(newState);
@@ -56,14 +68,14 @@ class Movies extends React.Component {
     render() {
         return (
             <div>
-                <NavBar/>
-                <FavoritesBar favorites={[]}/>
+                <NavBar />
+                <FavoritesBar favorites={[]} />
                 <div className="columns">
                     <MovieFilter
                         updateQuery={this.updateQuery}
                         searchParams={this.state.searchParams}
                     />
-                    <MovieList movies={this.filterOnQuery()}/>
+                    <MovieList movies={this.filterOnQuery()} />
                 </div>
             </div>
         )
