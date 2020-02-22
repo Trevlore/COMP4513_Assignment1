@@ -3,6 +3,7 @@ import * as _ from "lodash";
 import {defaultQueryParams} from "./Movies";
 import InputRange from 'react-input-range';
 import "../Style/Slider.css"
+import {CSSTransition} from 'react-transition-group';
 
 class MovieFilter extends React.Component {
     buttonStyle = {

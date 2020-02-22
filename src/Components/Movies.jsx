@@ -10,7 +10,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faStroopwafel} from "@fortawesome/free-solid-svg-icons";
 
 export const defaultQueryParams = {
-    title: " ",
+    title: "",
     minYear: 1900,
     maxYear: new Date().getFullYear(),
     minRating: 0,
@@ -21,14 +21,16 @@ class Movies extends React.Component {
 
     constructor(props) {
         super(props);
+        console.log(props.location.search);
         const searchParams = _.cloneDeep(defaultQueryParams);
-        searchParams.title = getSearchParam("title");
+        searchParams.title = GetSearchParam("title");
         this.state = {
             movies: [],
-            searchParams: searchParams,
-            isLoading: true
+            searchParams: searchParams
         }
     }
+
+
 
     async componentDidMount() {
         const request = await fetch("https://www.randyconnolly.com/funwebdev/3rd/api/movie/movies-brief.php?id=ALL");
@@ -40,6 +42,7 @@ class Movies extends React.Component {
         });
         newState.isLoading = false;
         //this.setState(newState);
+    }
     }
 
     updateQuery = (searchParams) => {
