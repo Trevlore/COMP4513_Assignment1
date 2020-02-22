@@ -18,7 +18,7 @@ class NavBar extends React.Component {
                     </div>
 
                     <div className="navbar-end">
-                        <Link to={"/" /*todo add path*/} className="button navbar-item">
+                        <Link to={"/About"} className="button navbar-item">
                             <span>About</span>
                         </Link>
                     </div>

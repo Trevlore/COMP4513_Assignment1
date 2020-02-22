@@ -1,9 +1,7 @@
 import React from "react";
 import * as _ from "lodash";
-import { Link } from "react-router-dom";
-import { Redirect, Route } from 'react-router-dom';
-import Movies from './Movies';
-import { Transition, CSSTransition, TransitionGroup } from 'react-transition-group';
+import { Redirect } from 'react-router-dom';
+import { CSSTransition} from 'react-transition-group';
 
 import "../Style/Home.css"
 
@@ -54,11 +52,11 @@ class Home extends React.Component {
     render() {
         switch (this.state.searchEnter) {
             case null:
-                return this.renderNormal()
+                return this.renderNormal();
             case "show":
-                return (<Redirect push to={"/movies"} />)
+                return (<Redirect push to={"/movies"} />);
             case "search":
-                return (<Redirect push to={"/movies?movie=" + this.state.searchQuery} />)
+                return (<Redirect push to={"/movies?title=" + this.state.searchQuery} />)
           }
     }
 

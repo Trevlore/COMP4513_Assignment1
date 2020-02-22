@@ -5,7 +5,6 @@ import FavoritesBar from './FavoritesBar';
 import MovieFilter from './MovieFilter';
 import MovieList from './MovieList';
 import {generateRegex, getSearchParam} from "../Helpers/Helper";
-import {withRouter} from "react-router";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faStroopwafel} from "@fortawesome/free-solid-svg-icons";
 
@@ -21,16 +20,14 @@ class Movies extends React.Component {
 
     constructor(props) {
         super(props);
-        console.log(props.location.search);
         const searchParams = _.cloneDeep(defaultQueryParams);
-        searchParams.title = GetSearchParam("title");
+        searchParams.title = getSearchParam("title");
         this.state = {
             movies: [],
-            searchParams: searchParams
+            searchParams: searchParams,
+            isLoading: true
         }
     }
-
-
 
     async componentDidMount() {
         const request = await fetch("https://www.randyconnolly.com/funwebdev/3rd/api/movie/movies-brief.php?id=ALL");
@@ -41,8 +38,7 @@ class Movies extends React.Component {
             return x;
         });
         newState.isLoading = false;
-        //this.setState(newState);
-    }
+        this.setState(newState);
     }
 
     updateQuery = (searchParams) => {
@@ -75,7 +71,8 @@ class Movies extends React.Component {
                         searchParams={this.state.searchParams}
                     />
                     <div className="column has-text-centered">
-                        {this.state.isLoading? <FontAwesomeIcon icon={faStroopwafel} className="fa-spin fa-10x"/>:<MovieList movies={movieList}/>}
+                        {this.state.isLoading ? <FontAwesomeIcon icon={faStroopwafel} className="fa-spin fa-10x"/> :
+                            <MovieList movies={movieList}/>}
                     </div>
                 </div>
             </div>
@@ -83,4 +80,4 @@ class Movies extends React.Component {
     }
 }
 
-export default withRouter(Movies);
+export default Movies;
