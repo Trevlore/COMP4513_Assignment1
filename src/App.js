@@ -16,7 +16,7 @@ function App({ location }) {
         classNames="fade"
       >
         <section className="route-section">
-          <Switch location={location}>
+          {/* <Switch location={location}> */}
             <Route path="/" exact> 
             {({ match }) => (
               <CSSTransition
@@ -33,7 +33,7 @@ function App({ location }) {
             </Route>
             <Route path="/Movies" component={Movies} exact />
             <Route path="/Movies/Details" component={MovieDetails} exact />
-          </Switch>
+          {/* </Switch> */}
         </section>
       </CSSTransition>
     </TransitionGroup>

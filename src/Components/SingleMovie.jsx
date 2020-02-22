@@ -7,7 +7,6 @@ class SingleMovie extends React.Component {
 
     constructor(props) {
         super(props);
-        this.setState({ movie: this.props.movie });
     }
 
     // onChange = (e) => {
@@ -23,15 +22,15 @@ class SingleMovie extends React.Component {
     // };
 
     render() {
-        //console.log(this.state.movie)
+        const { key, id, title, releaseDate, rating,poster } = this.props
         return (
             <div className="columns card">
-                <figure class="image is-128x128">
-                    <img src={require("../Images/IronMan.jpg")} alt="ironman" className="" />
+                <figure className="image is-128x128">
+                    <img src={"https://image.tmdb.org/t/p/w185/"+poster} alt={title + " poster"} />
                 </figure>
-                <span className="column">Movie Title</span>
-                <span className="column">1900</span>
-                <span className="column">8.3</span>
+                <span className="column">{title}</span>
+                <span className="column"></span>
+        <span className="column">{rating}</span>
                 <button className="column button is-1">Fav</button>
                 <Link to="/MovieDetails" className="column button is-1">Details</Link>
             </div>

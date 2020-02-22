@@ -1,12 +1,12 @@
 import React from 'react';
 import SingleMovie from "./SingleMovie";
-
+import {CSSTransition} from 'react-transition-group';
 
 class MovieList extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { movie: this.props.movie };
+        this.state = { movies: this.props.movies };
     }
 
     overflow = {
@@ -26,6 +26,7 @@ class MovieList extends React.Component {
                     title={x.title}
                     releaseDate={x.release_date}
                     rating={x.ratings.average}
+                    poster={x.poster}
                 />
                 )
         });

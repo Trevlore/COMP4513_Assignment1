@@ -50,7 +50,7 @@ class Movies extends React.Component {
     };
 
     filterOnQuery = () => {
-        return [];
+        return this.state.movies;
     };
 
     render() {

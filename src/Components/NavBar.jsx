@@ -10,7 +10,10 @@ class NavBar extends React.Component {
             <nav className="bd-navbar navbar has-shadow">
                     <div className="navbar-brand">
                         <span className="navbar-item fas fa-ticket-alt">
-                            <img src={ticket} alt="fa-ticket-alt" />Movie List
+                        <Link to={"/" /*todo add path*/} className="navbar-item fas fa-ticket-alt">
+                            <img src={ticket} alt="fa-ticket-alt"/>
+                            </Link>Movie ListF
+                        
                         </span>
                     </div>
 

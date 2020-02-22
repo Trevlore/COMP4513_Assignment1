@@ -67,7 +67,7 @@ class Home extends React.Component {
         return (
             <div className="is-fullheight hero">
                 <div className="column is-4 is-offset-4" style={this.style}>
-                    <CSSTransition exit={true} in={this.state.transition} classNames="searchBox" timeout={1500} appear mountOnEnter unmountOnExit>
+                    <CSSTransition exit={true} in={this.state.transition} classNames="searchBox" timeout={1500} appear >
                         <div className="box searchBox">
                             <h3 className="title has-text-black has-text-centered">Your Movie List</h3>
 
