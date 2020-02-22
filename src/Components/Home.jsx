@@ -1,7 +1,8 @@
 import React from "react";
 import * as _ from "lodash";
 import { Link } from "react-router-dom";
-import { Redirect } from 'react-router-dom';
+import { Redirect, Route } from 'react-router-dom';
+import Movies from './Movies';
 import { Transition, CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import "../Style/Home.css"
@@ -36,11 +37,7 @@ class Home extends React.Component {
     };
 
 
-    animate() {
-        const newState = _.cloneDeep(this.state);
-        newState.transition = false;
-        this.setState(newState);
-    }
+
 
     onKeyDown(e) {
         if (e.key === 'Enter') {
@@ -62,7 +59,62 @@ class Home extends React.Component {
     renderKeypress() {
         return (
             <Redirect push to={"/movies?movie=" + this.state.searchQuery} />
+
         )
+        //<Redirect push to={"/movies?movie=" + this.state.searchQuery} />
+        // <Redirect push to={to="/movies"/>
+
+    }
+
+    // const routes = [
+    //     { path: '/', name: 'Home', Component: Home },
+    //     { path: '/about', name: 'About', Component: About },
+    //     { path: '/contact', name: 'Contact', Component: Contact },
+    // ]
+
+    //     < Nav className = "mx-auto" >
+    //     {
+    //         routes.map(route => (
+    //             <Nav.Link
+    //                 key={route.path}
+    //                 as={NavLink}
+    //                 to={route.path}
+    //                 activeClassName="active"
+    //                 exact
+    //             >
+    //                 {route.name}
+    //             </Nav.Link>
+    //         ))
+    //     }
+    //             </Nav>
+
+    // <Container className="container">
+    //     {routes.map(({ path, Component }) => (
+    //         <Route key={path} exact path={path}>{({ match }) => (
+    //                 <CSSTransition
+    //                     in={match != null}
+    //                     timeout={300}
+    //                     classNames="page"
+    //                     unmountOnExit
+    //                 >
+    //                     <div className="page">
+    //                         <Component />
+    //                     </div>
+    //                 </CSSTransition>
+    //             )}
+    //         </Route>
+    //     ))}
+    // </Container>
+
+
+    exit(buttonCommand) {
+        const newState = _.cloneDeep(this.state);
+        newState.transition = false;
+        this.setState(newState);
+        if (buttonCommand === "search") {
+            newState.searchEnter = true;
+        }
+        this.setState(newState);
     }
 
     renderNormal() {
@@ -79,12 +131,15 @@ class Home extends React.Component {
                                 </div>
                             </div>
                             <div className="level">
-                                <Link to="/movies" className="level-item has-text-centered button is-block is-info">Show All Movies</Link>
-                                <Link to={"/movies?movie=" + this.state.searchQuery} className="level-item has-text-centered button is-block is-info">Search Movies</Link>
+                                {/* wait  */}
+                                <a onClick={() => this.exit("show")} className="level-item has-text-centered button is-block is-info">Show All Movies</a>
+                                <a onClick={() => this.exit("search")} className="level-item has-text-centered button is-block is-info">Search Movies</a>
+                                {/* <Link to="/movies" className="level-item has-text-centered button is-block is-info">Show All Movies</Link>
+                                <Link to={"/movies?movie=" + this.state.searchQuery} className="level-item has-text-centered button is-block is-info">Search Movies</Link> */}
                             </div>
                         </div>
                     </CSSTransition>
-                    <button type="button" onClick={() => this.animate()}>
+                    <button type="button" onClick={() => this.exit()}>
                         Test Exit
                     </button>
                 </div>
@@ -101,6 +156,7 @@ class Home extends React.Component {
 
         )
     }
+
 }
 
 export default Home;
