@@ -36,9 +36,6 @@ class Home extends React.Component {
         "borderTopLeftRadius": "0"
     };
 
-
-
-
     onKeyDown(e) {
         if (e.key === 'Enter') {
             const newState = _.cloneDeep(this.state);
@@ -47,75 +44,24 @@ class Home extends React.Component {
         }
     }
 
-    render() {
-        if (this.state.searchEnter) {
-            return this.renderKeypress();
-        }
-        else {
-            return this.renderNormal();
-        }
-
-    }
-    renderKeypress() {
-        return (
-            <Redirect push to={"/movies?movie=" + this.state.searchQuery} />
-
-        )
-        //<Redirect push to={"/movies?movie=" + this.state.searchQuery} />
-        // <Redirect push to={to="/movies"/>
-
-    }
-
-    // const routes = [
-    //     { path: '/', name: 'Home', Component: Home },
-    //     { path: '/about', name: 'About', Component: About },
-    //     { path: '/contact', name: 'Contact', Component: Contact },
-    // ]
-
-    //     < Nav className = "mx-auto" >
-    //     {
-    //         routes.map(route => (
-    //             <Nav.Link
-    //                 key={route.path}
-    //                 as={NavLink}
-    //                 to={route.path}
-    //                 activeClassName="active"
-    //                 exact
-    //             >
-    //                 {route.name}
-    //             </Nav.Link>
-    //         ))
-    //     }
-    //             </Nav>
-
-    // <Container className="container">
-    //     {routes.map(({ path, Component }) => (
-    //         <Route key={path} exact path={path}>{({ match }) => (
-    //                 <CSSTransition
-    //                     in={match != null}
-    //                     timeout={300}
-    //                     classNames="page"
-    //                     unmountOnExit
-    //                 >
-    //                     <div className="page">
-    //                         <Component />
-    //                     </div>
-    //                 </CSSTransition>
-    //             )}
-    //         </Route>
-    //     ))}
-    // </Container>
-
-
-    exit(buttonCommand) {
+    exit(command) {
         const newState = _.cloneDeep(this.state);
         newState.transition = false;
-        this.setState(newState);
-        if (buttonCommand === "search") {
-            newState.searchEnter = true;
-        }
+        newState.searchEnter = command;
         this.setState(newState);
     }
+
+    render() {
+        switch (this.state.searchEnter) {
+            case null:
+                return this.renderNormal()
+            case "show":
+                return (<Redirect push to={"/movies"} />)
+            case "search":
+                return (<Redirect push to={"/movies?movie=" + this.state.searchQuery} />)
+          }
+    }
+
 
     renderNormal() {
         return (
@@ -139,9 +85,6 @@ class Home extends React.Component {
                             </div>
                         </div>
                     </CSSTransition>
-                    <button type="button" onClick={() => this.exit()}>
-                        Test Exit
-                    </button>
                 </div>
 
                 <footer>
