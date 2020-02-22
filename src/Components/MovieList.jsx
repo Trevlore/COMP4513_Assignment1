@@ -1,60 +1,50 @@
 import React from 'react';
 import SingleMovie from "./SingleMovie";
-
+import '../Style/Table.css'
 
 class MovieList extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { movie: this.props.movie };
+        this.state = {movie: this.props.movie};
     }
 
-    overflow = {
-        maxHeight : "100%",
-        overflowX: "hidden",
-        overflowY: "scroll",
-        flexGrow : "1",
-        height: "50vw"
-    };
-
     RenderMovies = () => {
-        return this.props.movies.map((x)=>{
-            return (
-                <SingleMovie
-                    key={x.id}
-                    id={x.id}
-                    title={x.title}
-                    releaseDate={x.release_date}
-                    rating={x.ratings.average}
-                />
+        return (
+            <tbody style={this.tbodyStyle}>
+            {this.props.movies.map((x) => {
+                return (
+                    <SingleMovie
+                        key={x.id}
+                        id={x.id}
+                        title={x.title}
+                        releaseDate={x.release_date.getFullYear().toString()}
+                        rating={x.ratings.average}
+                        imageUrl={x.poster}
+                    />
                 )
-        });
+            })}
+            </tbody>
+        )
     };
 
     render() {
         return (
-            <div className="column">
-
-                <div className="box container" >
-                    <h1 className="title columns has-text-centered">Movie List</h1>
-                    <div>
-                        <div className="columns">
-                            <h2 className="column">Title</h2>
-                            <h2 className="column">Year</h2>
-                            <h2 className="column">Rating</h2>
-                        </div>
-                        <div style={this.overflow}>
-                            <this.RenderMovies/>
-
-                        </div>
-
-                    </div>
-
+                <div className="box table-container">
+                    <h1 className="title">Movie List</h1>
+                    <table className="table is-fullwidth" style={{overflowX:"auto"}}>
+                        <thead>
+                        <tr>
+                            <th/>{/*Image*/}
+                            <th>Title</th>
+                            <th>Year</th>
+                            <th>Rating</th>
+                            <th/>{/*Heart and View*/}
+                        </tr>
+                        </thead>
+                        <this.RenderMovies/>
+                    </table>
                 </div>
-                <div>
-                    {}
-                </div>
-            </div>
         )
     }
 }
