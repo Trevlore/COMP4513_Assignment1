@@ -1,6 +1,6 @@
 import React from "react";
 
-function Crew() {
+function SingleCast() {
         return <div>test</div>;
 }
-export default Crew;
+export default SingleCast;

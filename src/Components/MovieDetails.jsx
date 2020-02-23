@@ -1,7 +1,7 @@
 import React from 'react';
 import NavBar from "./NavBar"
 import FavoritesBar from './FavoritesBar';
-import CastAndCrew from './CastAndCrew';
+import ViewTaps from './ViewTaps';
 import { generateRegex, getSearchParam } from "../Helpers/Helper";
 import { CSSTransition } from 'react-transition-group';
 import About from './About'
@@ -86,7 +86,7 @@ class MovieDetails extends React.Component {
                             </div>
                         </div>
                         <div className="column">
-                            <CastAndCrew cast={production.cast} crew={production.crew}/>
+                            <ViewTaps cast={production.cast} crew={production.crew}/>
                         </div>
                     </div>
                 </div>

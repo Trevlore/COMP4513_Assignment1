@@ -1,9 +1,9 @@
 import React from "react";
 import { Link, Redirect } from "react-router-dom";
-import Crew from "./Crew"
+import SingleCrew from "./SingleCrew"
 
 
-class CastAndCrew extends React.Component {
+class ViewTaps extends React.Component {
 
     constructor(props) {
         super(props);
@@ -37,13 +37,13 @@ class CastAndCrew extends React.Component {
                 {this.props.crew.map((crew) => {
                     return (
 
-                        <Crew key={crew.cast_id}
+                        <SingleCrew key={crew.cast_id}
                         // id={x.id}
                         // title={x.title}
                         // releaseDate={x.release_date.getFullYear().toString()}
                         // rating={x.ratings.average}
                         // imageUrl={x.poster}
-                        >{crew.name}</Crew>
+                        >{crew.name}</SingleCrew>
                     )
                 })}
             </ul>
@@ -95,4 +95,4 @@ class CastAndCrew extends React.Component {
     }
 }
 
-export default CastAndCrew;
+export default ViewTaps;
