@@ -4,12 +4,9 @@ import NavBar from "./NavBar"
 import FavoritesBar from './FavoritesBar';
 import MovieFilter from './MovieFilter';
 import MovieList from './MovieList';
-import { generateRegex, getSearchParam } from "../Helpers/Helper";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStroopwafel } from "@fortawesome/free-solid-svg-icons";
-import { Redirect } from 'react-router';
-
-
+import {generateRegex, getSearchParam} from "../Helpers/Helper";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faStroopwafel} from "@fortawesome/free-solid-svg-icons";
 
 export const defaultQueryParams = {
     title: "",
@@ -22,15 +19,20 @@ export const defaultQueryParams = {
 class Movies extends React.Component {
 
     constructor(props) {
-        console.log('constructor')
         super(props);
         const searchParams = _.cloneDeep(defaultQueryParams);
         searchParams.title = getSearchParam("title");
         let movies = [];
-        if (localStorage.getItem('movies')) { movies = this.getStoredMovies(); }
+        let loading = true;
+        if (localStorage.getItem('movies')) {
+            movies = this.getStoredMovies();
+            loading = false
+        }
         this.state = {
             movies: movies,
-            searchParams: searchParams
+            filteredMovies: [],
+            searchParams: searchParams,
+            isLoading: loading
         }
     }
 
@@ -42,9 +44,9 @@ class Movies extends React.Component {
     }
 
     async componentDidMount() {
-        console.log('componentDidMount')
+        const newState = await _.cloneDeep(this.state);
+
         if (!localStorage.getItem('movies')) {
-            const newState = await _.cloneDeep(this.state);
             const request = await fetch("https://www.randyconnolly.com/funwebdev/3rd/api/movie/movies-brief.php?id=ALL");
             let parsedMovies = await request.json();
             parsedMovies.map(x => {
@@ -53,8 +55,10 @@ class Movies extends React.Component {
             });
             newState.movies = parsedMovies;
             localStorage.setItem('movies', JSON.stringify(parsedMovies));
+            newState.isLoading = false;
             this.setState(newState);
         }
+        this.filterOnQuery()
     }
 
     updateQuery = (searchParams) => {
@@ -63,33 +67,32 @@ class Movies extends React.Component {
         this.setState(newState);
     };
 
-    filterOnQuery() {
-        return this.state.movies.filter((x) => {
+    filterOnQuery = () => {
+        const newState = _.cloneDeep(this.state);
+        newState.filteredMovies = newState.movies.filter((x) => {
             return generateRegex(this.state.searchParams.title).test(x.title) &&
                 Number(x.release_date.getFullYear()) >= this.state.searchParams.minYear &&
                 Number(x.release_date.getFullYear()) <= this.state.searchParams.maxYear &&
                 Number(x.ratings.average) >= this.state.searchParams.minRating &&
                 Number(x.ratings.average) <= this.state.searchParams.maxRating;
-
-
         });
+        this.setState(newState);
     };
 
     render() {
-        console.log("render");
-        const movieList = this.filterOnQuery();
         return (
             <div>
-                <NavBar />
-                <FavoritesBar favorites={[]} />
+                <NavBar/>
+                <FavoritesBar favorites={[]}/>
                 <div className="columns">
                     <MovieFilter
                         updateQuery={this.updateQuery}
                         searchParams={this.state.searchParams}
+                        onSearch={this.filterOnQuery}
                     />
                     <div className="column has-text-centered">
-                        {this.state.movies.length === 0 ? <FontAwesomeIcon icon={faStroopwafel} className="fa-spin fa-10x" /> :
-                            <MovieList movies={movieList} />}
+                        {this.state.isLoading ? <FontAwesomeIcon icon={faStroopwafel} className="fa-spin fa-10x"/> :
+                            <MovieList movies={this.state.filteredMovies}/>}
                     </div>
                 </div>
             </div>
