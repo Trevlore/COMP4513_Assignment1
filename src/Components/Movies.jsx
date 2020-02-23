@@ -23,12 +23,16 @@ class Movies extends React.Component {
         const searchParams = _.cloneDeep(defaultQueryParams);
         searchParams.title = getSearchParam("title");
         let movies = [];
-        if (localStorage.getItem('movies')) { movies = this.getStoredMovies(); }
+        let loading = true;
+        if (localStorage.getItem('movies')) {
+            movies = this.getStoredMovies();
+            loading = false
+        }
         this.state = {
             movies: movies,
             filteredMovies: [],
             searchParams: searchParams,
-            isLoading: true
+            isLoading: loading
         }
     }
 
@@ -43,7 +47,6 @@ class Movies extends React.Component {
         const newState = await _.cloneDeep(this.state);
 
         if (!localStorage.getItem('movies')) {
-            const newState = await _.cloneDeep(this.state);
             const request = await fetch("https://www.randyconnolly.com/funwebdev/3rd/api/movie/movies-brief.php?id=ALL");
             let parsedMovies = await request.json();
             parsedMovies.map(x => {
@@ -52,8 +55,10 @@ class Movies extends React.Component {
             });
             newState.movies = parsedMovies;
             localStorage.setItem('movies', JSON.stringify(parsedMovies));
+            newState.isLoading = false;
             this.setState(newState);
         }
+        this.filterOnQuery()
     }
 
     updateQuery = (searchParams) => {
@@ -75,7 +80,6 @@ class Movies extends React.Component {
     };
 
     render() {
-        const movieList = this.filterOnQuery();
         return (
             <div>
                 <NavBar/>
@@ -84,6 +88,7 @@ class Movies extends React.Component {
                     <MovieFilter
                         updateQuery={this.updateQuery}
                         searchParams={this.state.searchParams}
+                        onSearch={this.filterOnQuery}
                     />
                     <div className="column has-text-centered">
                         {this.state.isLoading ? <FontAwesomeIcon icon={faStroopwafel} className="fa-spin fa-10x"/> :
