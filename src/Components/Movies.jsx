@@ -24,6 +24,7 @@ class Movies extends React.Component {
         searchParams.title = getSearchParam("title");
         this.state = {
             movies: [],
+            filteredMovies: [],
             searchParams: searchParams,
             isLoading: true
         }
@@ -48,10 +49,9 @@ class Movies extends React.Component {
                 return x;
             });
         }
-
         newState.isLoading = false;
         this.setState(newState);
-
+        this.filterOnQuery();
     }
 
     updateQuery = (searchParams) => {
@@ -60,20 +60,19 @@ class Movies extends React.Component {
         this.setState(newState);
     };
 
-    filterOnQuery () {
-        return this.state.movies.filter((x) => {
+    filterOnQuery = () => {
+        const newState = _.cloneDeep(this.state);
+        newState.filteredMovies = newState.movies.filter((x) => {
             return generateRegex(this.state.searchParams.title).test(x.title) &&
                 Number(x.release_date.getFullYear()) >= this.state.searchParams.minYear &&
                 Number(x.release_date.getFullYear()) <= this.state.searchParams.maxYear &&
                 Number(x.ratings.average) >= this.state.searchParams.minRating &&
                 Number(x.ratings.average) <= this.state.searchParams.maxRating;
-
-
         });
+        this.setState(newState);
     };
 
     render() {
-        const movieList = this.filterOnQuery();
         return (
             <div>
                 <NavBar/>
@@ -82,10 +81,11 @@ class Movies extends React.Component {
                     <MovieFilter
                         updateQuery={this.updateQuery}
                         searchParams={this.state.searchParams}
+                        onSearch={this.filterOnQuery}
                     />
                     <div className="column has-text-centered">
                         {this.state.isLoading ? <FontAwesomeIcon icon={faStroopwafel} className="fa-spin fa-10x"/> :
-                            <MovieList movies={movieList}/>}
+                            <MovieList movies={this.state.filteredMovies}/>}
                     </div>
                 </div>
             </div>
