@@ -18,7 +18,7 @@ class SingleMovie extends React.Component {
                 <td>{this.props.rating}</td>
                 <td>
                     <button className="button is-1">Fav</button>
-                    <Link to="/MovieDetails" className="button is-1">View</Link>
+                    <Link to="/Movies/Details" path={this.props.id}  className="button is-1">View</Link>
                 </td>
             </tr>
         )
