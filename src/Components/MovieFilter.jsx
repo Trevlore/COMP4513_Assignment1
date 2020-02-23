@@ -3,7 +3,6 @@ import * as _ from "lodash";
 import {defaultQueryParams} from "./Movies";
 import InputRange from 'react-input-range';
 import "../Style/Slider.css"
-//import {CSSTransition} from 'react-transition-group';
 
 class MovieFilter extends React.Component {
     buttonStyle = {
@@ -28,21 +27,20 @@ class MovieFilter extends React.Component {
         const newParams = _.cloneDeep(this.props.searchParams);
         newParams.minRating = value.min;
         newParams.maxRating = value.max;
-        this.props.updateQuery(newParams)
+        this.updateParams(newParams)
     };
 
     updateQueryParamsRatingMin = (value) => {
         const newParams = _.cloneDeep(this.props.searchParams);
         newParams.minRating = value;
         newParams["maxRating"] = defaultQueryParams.maxRating;
-        this.props.updateQuery(newParams)
+        this.updateParams(newParams)
     };
 
-    updateQueryParamsRatingMax= (value) => {
+    updateQueryParamsRatingMax = (value) => {
         const newParams = _.cloneDeep(this.props.searchParams);
         newParams.maxRating = value;
-        newParams.minRating = defaultQueryParams.minRating;
-        this.props.updateQuery(newParams)
+        this.updateParams(newParams)
     };
 
     updateQueryParamsYear = (e) => {
@@ -50,13 +48,13 @@ class MovieFilter extends React.Component {
         const name = curr.name;
         const value = curr.value;
         const newParams = _.cloneDeep(this.props.searchParams);
-        newParams[name] = value;
+        newParams[name] = Number(value);
         if (this.state.yearSelected === this.selectorOptions.min) {
-            newParams.minYear = defaultQueryParams.minYear;
-        } else if (this.state.yearSelected === this.selectorOptions.max) {
             newParams.maxYear = defaultQueryParams.maxYear;
+        } else if (this.state.yearSelected === this.selectorOptions.max) {
+            newParams.minYear = defaultQueryParams.minYear;
         }
-        this.props.updateQuery(newParams);
+        this.updateParams(newParams);
     };
 
     updateQueryParamsTitle = (e) => {
@@ -67,13 +65,39 @@ class MovieFilter extends React.Component {
         this.props.updateQuery(newParams);
     };
 
+    updateParams(newParams = _.cloneDeep(this.props.searchParams)) {
+        if (this.state.yearSelected === this.selectorOptions.min) {
+            newParams.maxYear = defaultQueryParams.maxYear;
+        } else if (this.state.yearSelected === this.selectorOptions.max) {
+            newParams.minYear = defaultQueryParams.minYear;
+        }
+
+        if (this.state.ratingSelected === this.selectorOptions.min) {
+            newParams.maxRating = defaultQueryParams.maxRating;
+        } else if (this.state.yearSelected === this.selectorOptions.max) {
+            newParams.minRating = defaultQueryParams.minRating;
+        }
+        console.log(newParams);
+        this.props.updateQuery(newParams);
+    }
+
+    clearQueryParams = (e)=>{
+        this.props.updateQuery(defaultQueryParams);
+    };
+
     changeInput = (e) => {
+        const newState = _.cloneDeep(this.state);
         const curr = e.target;
         const name = curr.name;
-        const value = Number(curr.value);
-        const newState = _.cloneDeep(this.state);
-        newState[name] = value;
+        newState[name] = Number(curr.value);
         this.setState(newState);
+        console.log("fired");
+        this.updateParams()
+    };
+
+    runSearch = (e)=>{
+        console.dir(e);
+        this.props.onSearch();
     };
 
     render() {
@@ -101,7 +125,7 @@ class MovieFilter extends React.Component {
                                 <label htmlFor="yearBefore" className="title is-5">Before</label>
                             </div>
                             <div className="column level-right is-4">
-                                <input name="minYear" value={this.props.searchParams.maxYear}
+                                <input name="maxYear" value={this.props.searchParams.maxYear}
                                        className="input" type="number" onChange={this.updateQueryParamsYear}
                                        disabled={this.state.yearSelected !== this.selectorOptions.max}
                                 />
@@ -116,7 +140,7 @@ class MovieFilter extends React.Component {
                                 <label htmlFor="yearAfter" className="title is-5">After</label>
                             </div>
                             <div className="column level-right is-4">
-                                <input name="maxYear" value={this.props.searchParams.minYear}
+                                <input name="minYear" value={this.props.searchParams.minYear}
                                        className="input" type="number" onChange={this.updateQueryParamsYear}
                                        disabled={this.state.yearSelected !== this.selectorOptions.min}/>
                             </div>
@@ -182,7 +206,8 @@ class MovieFilter extends React.Component {
                                        checked={this.state.ratingSelected === this.selectorOptions.between}/>
                                 <label className="label" htmlFor="ratingBetween">Between</label>
                             </div>
-                            <InputRange minValue={this.sliderRange.min} maxValue={this.sliderRange.max} name="ratingBetween"
+                            <InputRange minValue={this.sliderRange.min} maxValue={this.sliderRange.max}
+                                        name="ratingBetween"
                                         onChange={this.updateQueryParamsRatingBetween}
                                         value={{
                                             min: this.props.searchParams.minRating,
@@ -190,14 +215,15 @@ class MovieFilter extends React.Component {
                                         }}
                                         disabled={this.state.ratingSelected !== this.selectorOptions.between}
                             />
-
                         </div>
-
                     </div>
 
                     <div className="control has-text-centered">
-                        <button style={this.buttonStyle} name="clear" onClick={this.updateQueryParamsYear}
+                        <button style={this.buttonStyle} name="clear" onClick={this.clearQueryParams}
                                 className="button">Clear
+                        </button>
+                        <button style={this.buttonStyle} name="search" onClick={this.runSearch}
+                                className="button">Search
                         </button>
                     </div>
                 </div>
