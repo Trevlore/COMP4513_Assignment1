@@ -11,8 +11,8 @@ class SingleMovie extends React.Component {
         return (
             <tr>
                 <td>
-                    <figure className="image is-fullwidth">
-                        <img src={this.posterLink + this.props.imageUrl} alt="ironman"/>
+                    <figure className="image is-fullwidth is-2by3">
+                        <img src={this.posterLink + this.props.imageUrl} alt="Poster"/>
                     </figure>
                 </td>
                 <td>{this.props.title}</td>
@@ -20,7 +20,7 @@ class SingleMovie extends React.Component {
                 <td>{this.props.rating}</td>
                 <td className="">
                     <button className="button is-1"><FontAwesomeIcon icon={faHeart}  className="fa fa-heart"/></button>
-                    <Link to="/Movies/Details" path={this.props.id}  className="button is-1" style={{margin : "0"}}>View</Link>
+                    <Link to={"/Movies/Details?id=" + this.props.id} path={this.props.id}  className="button is-1" style={{margin : "0"}}>View</Link>
                 </td>
             </tr>
         )

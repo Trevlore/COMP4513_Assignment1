@@ -2,44 +2,96 @@ import React from 'react';
 import NavBar from "./NavBar"
 import FavoritesBar from './FavoritesBar';
 import CastAndCrew from './CastAndCrew';
+import { generateRegex, getSearchParam } from "../Helpers/Helper";
 import { CSSTransition } from 'react-transition-group';
 import About from './About'
+import "../Style/Details.css"
 
 class MovieDetails extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            id: getSearchParam("id")
+        }
+    }
+
+    async componentDidMount() {
+        //console.log('componentDidMount')
+        // imdb_id
+        // https://www.themoviedb.org/movie/imdb_id 
+        // https://www.imdb.com/title/imdb_id,
+        const request = await fetch("http://www.randyconnolly.com/funwebdev/3rd/api/movie/movies.php?id=" + getSearchParam("id"));
+        let parsedMovie = await request.json();
+        this.setState({ movie: parsedMovie });
+    }
+
+    posterLink = "https://image.tmdb.org/t/p/w154/";
     render() {
-        return (
 
-            <div>
+        if (!this.state.movie) {
+            return (<div>loading</div>)
+        } else {
+            console.log(this.state.movie)
+            const { production, imdb_id, title, tmdb_id, id, poster, details } = this.state.movie;
+            return (
 
-                <NavBar />
-                <FavoritesBar favorites={[]} />
-                
-                <div className="columns column has-background-grey-light">
-                <About/>
-                    <div className="column is-three-fifths">
-                        <div className="container columns levels">
-                            <h1 className="title column is-three-fifths level">Movie Title</h1>
-                            <button className="button has-background-warning">Add to favorites</button>
-                        </div>
-                        <div className="container columns ">
-                            <figure className="column is-half image ">
-                                <img src={require("../Images/IronMan.jpg")} alt="ironman" className="" />
-                            </figure>
-                            <div className="column is-half">
-                                <p>Details</p>
-                                <div className="tile">info</div>
-                                <div className="tile">info</div>
-                                <div className="tile">info</div>
+                <div>
+
+                    <NavBar />
+                    <FavoritesBar favorites={[]} />
+                    <About />
+                    <div className="columns">
+                        <div className="column is-two-thirds">
+                            <div className="columns ">
+
+                                <div className="column is-two-fifths">
+                                    <header className="card-header"><a className="card-footer-item ">Add to favorites</a></header>
+                                    <div className="card-image">
+                                        <figure className="image is-2by3">
+                                            <img src={this.posterLink + poster} alt="Poster" />
+                                        </figure>
+                                    </div>
+
+
+                                </div>
+
+                                <div className="column">
+                                    <div>
+                                        <div className="title">{title}</div>
+                                        <div className="tile">{details.overview}</div>
+                                    </div>
+
+                                    <div className="columns">
+                                    <div className="column">
+                                        <div className="">Countries</div>
+                                        <div className="tags">
+                                            <span className="tag">One</span>
+                                            <span className="tag">Two</span>
+                                            <span className="tag">Three</span>
+                                        </div>
+                                    </div>
+
+                                    <div className="column">
+                                        <div className="">Companies</div>
+                                        <div className="tags">
+                                            <span className="tag">One</span>
+                                            <span className="tag">Two</span>
+                                            <span className="tag">Three</span>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
+                        <div className="column">
+                            <CastAndCrew props={production} />
+                        </div>
                     </div>
-                    <CastAndCrew />
                 </div>
-            </div>
-
-
-        )
+            )
+        }
     }
 }
 
