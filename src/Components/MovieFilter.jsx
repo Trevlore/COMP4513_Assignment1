@@ -77,7 +77,6 @@ class MovieFilter extends React.Component {
         } else if (this.state.yearSelected === this.selectorOptions.max) {
             newParams.minRating = defaultQueryParams.minRating;
         }
-        console.log(newParams);
         this.props.updateQuery(newParams);
     }
 
@@ -91,7 +90,6 @@ class MovieFilter extends React.Component {
         const name = curr.name;
         newState[name] = Number(curr.value);
         this.setState(newState);
-        console.log("fired");
         this.updateParams()
     };
 
@@ -101,7 +99,6 @@ class MovieFilter extends React.Component {
     };
 
     render() {
-        console.log("render filter")
         return (
             <div className="column is-two-fifths filter-container">
                 <div className="container box">
