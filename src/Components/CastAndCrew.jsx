@@ -1,10 +1,12 @@
 import React from "react";
-import { Link ,Redirect} from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 
 class CastAndCrew extends React.Component {
 
-
+    constructor(props) {
+        super(props);
+    }
     state = {
         active: 'Cast',
         passive: 'Crew'
@@ -20,7 +22,7 @@ class CastAndCrew extends React.Component {
                 active: this.state.passive,
                 passive: this.state.active
             });
-            
+
         }
     };
 
@@ -35,14 +37,16 @@ class CastAndCrew extends React.Component {
     }
 
     render() {
-
+        console.log(this.props)
+       const {cast,crew} = this.props
         return (
             <div id="CastAndCrew" className="column container box">
                 <div className="tabs">
+
                     <ul>
                         <li id='Cast' className="is-active" onClick={this.tapHandler}><a>Cast</a></li>
                         <li id='Crew' className="" onClick={this.tapHandler}><a>Crew</a></li>
-                        <Link to="/Movies" path={"/Movies"}  className="button is-1" style={{margin : "0"}}>Back</Link>
+                        <Link to="/Movies" path={"/Movies"} className="button is-1" style={{ margin: "0" }}>Back</Link>
                     </ul>
 
                 </div>
