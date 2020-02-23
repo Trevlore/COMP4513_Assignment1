@@ -86,7 +86,7 @@ class MovieDetails extends React.Component {
                             </div>
                         </div>
                         <div className="column">
-                            <CastAndCrew props={production} />
+                            <CastAndCrew cast={production.cast} crew={production.crew}/>
                         </div>
                     </div>
                 </div>
