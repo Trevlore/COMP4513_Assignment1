@@ -1,7 +1,6 @@
 import React from 'react';
 import SingleMovie from "./SingleMovie";
 import '../Style/Table.css'
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 class MovieList extends React.Component {
 
@@ -30,7 +29,6 @@ class MovieList extends React.Component {
     };
 
     render() {
-        console.log('render movies')
         return (
                 <div className="box table-container">
                     <h1 className="title">Movie List</h1>
