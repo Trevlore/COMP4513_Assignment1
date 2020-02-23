@@ -30,32 +30,27 @@ class Movies extends React.Component {
     }
 
     async componentDidMount() {
+        const newState = await _.cloneDeep(this.state);
+
         if (!localStorage.getItem('movies')) {
             const request = await fetch("https://www.randyconnolly.com/funwebdev/3rd/api/movie/movies-brief.php?id=ALL");
-            const moviesArray = request.json();
-            const newState = await _.cloneDeep(this.state);
-            let parsedMovies = await moviesArray;
-
+            let parsedMovies = await request.json();
             parsedMovies.map(x => {
                 x.release_date = new Date(x.release_date);
                 return x;
             });
-            
-            localStorage.setItem('movies', JSON.stringify(parsedMovies));
-
             newState.movies = parsedMovies;
-            this.setState(newState);
-            
+            localStorage.setItem('movies', JSON.stringify(parsedMovies));
         } else {
-            const newState = _.cloneDeep(this.state);
             newState.movies = JSON.parse(localStorage.getItem('movies'));
             newState.movies.map(x => {
                 x.release_date = new Date(x.release_date);
                 return x;
             });
-            newState.isLoading = false;
-            this.setState(newState);
         }
+
+        newState.isLoading = false;
+        this.setState(newState);
 
     }
 
