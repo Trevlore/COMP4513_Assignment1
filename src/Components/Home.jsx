@@ -75,11 +75,8 @@ class Home extends React.Component {
                                 </div>
                             </div>
                             <div className="level">
-                                {/* wait  */}
                                 <a onClick={() => this.exit("show")} className="level-item has-text-centered button is-block is-info">Show All Movies</a>
                                 <a onClick={() => this.exit("search")} className="level-item has-text-centered button is-block is-info">Search Movies</a>
-                                {/* <Link to="/movies" className="level-item has-text-centered button is-block is-info">Show All Movies</Link>
-                                <Link to={"/movies?movie=" + this.state.searchQuery} className="level-item has-text-centered button is-block is-info">Search Movies</Link> */}
                             </div>
                         </div>
                     </CSSTransition>

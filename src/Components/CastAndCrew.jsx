@@ -1,6 +1,5 @@
 import React from "react";
-// import * as _ from "lodash";
-//import { Link } from "react-router-dom";
+import { Link ,Redirect} from "react-router-dom";
 
 
 class CastAndCrew extends React.Component {
@@ -21,8 +20,8 @@ class CastAndCrew extends React.Component {
                 active: this.state.passive,
                 passive: this.state.active
             });
+            
         }
-
     };
 
     toggleActive = (id) => document.getElementById(id).classList.toggle('is-active');
@@ -43,7 +42,7 @@ class CastAndCrew extends React.Component {
                     <ul>
                         <li id='Cast' className="is-active" onClick={this.tapHandler}><a>Cast</a></li>
                         <li id='Crew' className="" onClick={this.tapHandler}><a>Crew</a></li>
-                        <button id='Close' className="button " onClick={this.tapHandler}>Close</button>
+                        <Link to="/Movies" path={"/Movies"}  className="button is-1" style={{margin : "0"}}>Back</Link>
                     </ul>
 
                 </div>

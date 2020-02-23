@@ -4,9 +4,10 @@ import NavBar from "./NavBar"
 import FavoritesBar from './FavoritesBar';
 import MovieFilter from './MovieFilter';
 import MovieList from './MovieList';
-import {generateRegex, getSearchParam} from "../Helpers/Helper";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faStroopwafel} from "@fortawesome/free-solid-svg-icons";
+import { generateRegex, getSearchParam } from "../Helpers/Helper";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStroopwafel } from "@fortawesome/free-solid-svg-icons";
+import { Redirect } from 'react-router';
 
 
 
@@ -21,20 +22,29 @@ export const defaultQueryParams = {
 class Movies extends React.Component {
 
     constructor(props) {
+        console.log('constructor')
         super(props);
         const searchParams = _.cloneDeep(defaultQueryParams);
         searchParams.title = getSearchParam("title");
+        let movies = [];
+        if (localStorage.getItem('movies')) { movies = this.getStoredMovies(); }
         this.state = {
-            movies: [],
-            searchParams: searchParams,
-            isLoading: true
+            movies: movies,
+            searchParams: searchParams
         }
     }
 
-    async componentDidMount() {
-        const newState = await _.cloneDeep(this.state);
+    getStoredMovies() {
+        return JSON.parse(localStorage.getItem('movies')).map(x => {
+            x.release_date = new Date(x.release_date);
+            return x;
+        });
+    }
 
+    async componentDidMount() {
+        console.log('componentDidMount')
         if (!localStorage.getItem('movies')) {
+            const newState = await _.cloneDeep(this.state);
             const request = await fetch("https://www.randyconnolly.com/funwebdev/3rd/api/movie/movies-brief.php?id=ALL");
             let parsedMovies = await request.json();
             parsedMovies.map(x => {
@@ -43,17 +53,8 @@ class Movies extends React.Component {
             });
             newState.movies = parsedMovies;
             localStorage.setItem('movies', JSON.stringify(parsedMovies));
-        } else {
-            newState.movies = JSON.parse(localStorage.getItem('movies'));
-            newState.movies.map(x => {
-                x.release_date = new Date(x.release_date);
-                return x;
-            });
+            this.setState(newState);
         }
-
-        newState.isLoading = false;
-        this.setState(newState);
-
     }
 
     updateQuery = (searchParams) => {
@@ -62,7 +63,7 @@ class Movies extends React.Component {
         this.setState(newState);
     };
 
-    filterOnQuery () {
+    filterOnQuery() {
         return this.state.movies.filter((x) => {
             return generateRegex(this.state.searchParams.title).test(x.title) &&
                 Number(x.release_date.getFullYear()) >= this.state.searchParams.minYear &&
@@ -75,20 +76,20 @@ class Movies extends React.Component {
     };
 
     render() {
+        console.log("render");
         const movieList = this.filterOnQuery();
         return (
             <div>
-                
-                <NavBar/>
-                <FavoritesBar favorites={[]}/>
+                <NavBar />
+                <FavoritesBar favorites={[]} />
                 <div className="columns">
                     <MovieFilter
                         updateQuery={this.updateQuery}
                         searchParams={this.state.searchParams}
                     />
                     <div className="column has-text-centered">
-                        {this.state.isLoading ? <FontAwesomeIcon icon={faStroopwafel} className="fa-spin fa-10x"/> :
-                            <MovieList movies={movieList}/>}
+                        {this.state.movies.length === 0 ? <FontAwesomeIcon icon={faStroopwafel} className="fa-spin fa-10x" /> :
+                            <MovieList movies={movieList} />}
                     </div>
                 </div>
             </div>

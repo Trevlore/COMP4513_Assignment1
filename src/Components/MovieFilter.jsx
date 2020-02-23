@@ -77,6 +77,7 @@ class MovieFilter extends React.Component {
     };
 
     render() {
+        console.log("render filter")
         return (
             <div className="column is-two-fifths filter-container">
                 <div className="container box">
