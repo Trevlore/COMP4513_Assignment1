@@ -1,7 +1,7 @@
 import React from 'react';
 import SingleMovie from "./SingleMovie";
 import '../Style/Table.css'
-import "../Style/Animation.css";
+//import "../Style/Animation.css";
 
 class MovieList extends React.Component {
 
