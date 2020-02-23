@@ -1,6 +1,7 @@
 import React from 'react';
 import SingleMovie from "./SingleMovie";
 import '../Style/Table.css'
+import "../Style/Animation.css";
 
 class MovieList extends React.Component {
 
@@ -11,7 +12,7 @@ class MovieList extends React.Component {
 
     RenderMovies = () => {
         return (
-            <tbody style={this.tbodyStyle}>
+            <tbody>
             {this.props.movies.map((x) => {
                 return (
                     <SingleMovie

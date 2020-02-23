@@ -3,12 +3,12 @@ import * as _ from "lodash";
 import { Redirect } from 'react-router-dom';
 import { CSSTransition} from 'react-transition-group';
 
-import "../Style/Home.css"
+import "../Style/Home.css";
 
 class Home extends React.Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = { searchQuery: "", searchEnter: null, transition: true };
         this.onKeyDown = this.onKeyDown.bind(this);
     }
