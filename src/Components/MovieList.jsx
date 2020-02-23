@@ -35,12 +35,12 @@ class MovieList extends React.Component {
                     <h1 className="title">Movie List</h1>
                     <table className="table is-fullwidth" style={{overflowX:"auto"}}>
                         <thead>
-                        <tr>
-                            <th/>{/*Image*/}
-                            <th>Title</th>
-                            <th>Year</th>
-                            <th>Rating</th>
-                            <th/>{/*Heart and View*/}
+                        <tr className="columns">
+                            <th className="column" />{/*Image*/}
+                            <th className="column">Title</th>
+                            <th className="column">Year</th>
+                            <th className="column">Rating</th>
+                            <th className="column"/>{/*Heart and View*/}
                         </tr>
                         </thead>
                         <this.RenderMovies/>
