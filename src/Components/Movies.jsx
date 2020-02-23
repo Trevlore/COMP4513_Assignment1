@@ -8,6 +8,8 @@ import {generateRegex, getSearchParam} from "../Helpers/Helper";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faStroopwafel} from "@fortawesome/free-solid-svg-icons";
 
+
+
 export const defaultQueryParams = {
     title: "",
     minYear: 1900,
@@ -44,6 +46,7 @@ class Movies extends React.Component {
             localStorage.setItem('movies', JSON.stringify(parsedMovies));
 
             newState.movies = parsedMovies;
+            newState.isLoading = false;
             this.setState(newState);
             
         } else {
@@ -81,6 +84,7 @@ class Movies extends React.Component {
         const movieList = this.filterOnQuery();
         return (
             <div>
+                
                 <NavBar/>
                 <FavoritesBar favorites={[]}/>
                 <div className="columns">
