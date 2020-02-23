@@ -101,8 +101,9 @@ class MovieFilter extends React.Component {
     };
 
     render() {
+        console.log("render filter")
         return (
-            <div className="column is-two-fifths">
+            <div className="column is-two-fifths filter-container">
                 <div className="container box">
                     <h1 className="title has-text-centered">Movie Filters</h1>
 

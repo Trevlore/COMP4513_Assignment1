@@ -3,8 +3,8 @@ import './App.css';
 import Home from './Components/Home';
 import MovieDetails from './Components/MovieDetails';
 import Movies from './Components/Movies';
-import { Route, Router, Switch, withRouter } from "react-router-dom";
-import { Transition, CSSTransition, TransitionGroup } from 'react-transition-group';
+import { Route, withRouter, Switch, Redirect } from "react-router-dom";
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 function App({ location }) {
   return (
@@ -16,27 +16,15 @@ function App({ location }) {
         classNames="fade"
       >
         <section className="route-section">
-          {/* <Switch location={location}> */}
-            <Route path="/" exact> 
-            {({ match }) => (
-              <CSSTransition
-                in={match != null}
-                timeout={300}
-                classNames="page"
-                unmountOnExit
-              >
-                <div className="page">
-                  <Home/>
-                </div>
-              </CSSTransition>
-            )}
-            </Route>
+          <Switch>
+            <Route path="/" component={Home} exact />
             <Route path="/Movies" component={Movies} exact />
             <Route path="/Movies/Details" component={MovieDetails} exact />
-          {/* </Switch> */}
+          </Switch>
         </section>
       </CSSTransition>
     </TransitionGroup>
+
 
   );
 }
