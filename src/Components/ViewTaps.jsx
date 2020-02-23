@@ -1,6 +1,9 @@
 import React from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import SingleCrew from "./SingleCrew"
+import SingleCast from "./SingleCast"
+import "../Style/Table.css"
+
 
 
 class ViewTaps extends React.Component {
@@ -31,47 +34,65 @@ class ViewTaps extends React.Component {
     toggleActive = (id) => document.getElementById(id).classList.toggle('is-active');
 
     renderCrew() {
-        console.log("HERE")
         return (
-            <ul>
-                {this.props.crew.map((crew) => {
-                    return (
-
-                        <SingleCrew key={crew.cast_id}
-                        // id={x.id}
-                        // title={x.title}
-                        // releaseDate={x.release_date.getFullYear().toString()}
-                        // rating={x.ratings.average}
-                        // imageUrl={x.poster}
-                        >{crew.name}</SingleCrew>
-                    )
-                })}
-            </ul>
+            <table className="table is-fullwidth" style={{ overflowX: "auto" }}>
+                <thead>
+                    <tr className="columns">
+                        <th className="column">Character</th>
+                        <th className="column">Actor</th>
+                        <th className="column">Name</th>
+                        <th className="column" />{/*View*/}
+                    </tr>
+                </thead>
+                <tbody>
+                    {this.props.crew.map((crew) => {
+                        return (
+                            <SingleCrew
+                                key={crew.id}
+                                id={crew.id}
+                                credit_id={crew.credit_id}
+                                department={crew.department}
+                                job={crew.job}
+                                name={crew.name}
+                            />
+                        )
+                    })}
+                </tbody>
+            </table>
         )
     }
 
     renderCast() {
         return (
-            <ul>
-                {this.props.cast.map((x, index) => {
-                    return (
-                        <li
-                            key={index}
-                        // id={x.id}
-                        // title={x.title}
-                        // releaseDate={x.release_date.getFullYear().toString()}
-                        // rating={x.ratings.average}
-                        // imageUrl={x.poster}
-                        >{x.job}</li>
-                    )
-                })}
-
-            </ul>
+            <table className="table is-fullwidth" style={{ overflowX: "auto" }}>
+                <thead>
+                    <tr className="columns">
+                        <th className="column">Character</th>
+                        <th className="column">Actor</th>
+                        <th className="column" />{/*View*/}
+                    </tr>
+                </thead>
+                <tbody>
+                    {this.props.cast.map((cast) => {
+                        return (
+                            <SingleCast
+                                key={cast.id}
+                                id={cast.id}
+                                cast_id={cast.cast_id}
+                                character={cast.character}
+                                credit_id={cast.credit_id}
+                                gender={cast.gender}
+                                name={cast.name}
+                                order={cast.order}
+                            />
+                        )
+                    })}
+                </tbody>
+            </table>
         )
     }
 
     render() {
-        console.log(this.state.active)
         const { cast, crew } = this.props
         return (
             <div id="CastAndCrew" className="column container box">
@@ -81,16 +102,14 @@ class ViewTaps extends React.Component {
                         <li id='Crew' className="" onClick={this.tapHandler}><a>Crew</a></li>
                         <Link to="/Movies" path={"/Movies"} className="button is-1 is-right" style={{ margin: "0", }}>Back</Link>
                     </ul>
-
-
-
                 </div>
-                <div>
+                <div className="box table-container">
+
                     {this.state.active == "Cast" ? this.renderCast() : this.renderCrew()}
 
                 </div>
 
-            </div >
+            </div>
         )
     }
 }

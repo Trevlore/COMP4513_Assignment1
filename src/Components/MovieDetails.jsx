@@ -26,7 +26,7 @@ class MovieDetails extends React.Component {
         this.setState({ movie: parsedMovie });
     }
 
-    posterLink = "https://image.tmdb.org/t/p/w154/";
+    posterLink = "https://image.tmdb.org/t/p/w500/";
     render() {
 
         if (!this.state.movie) {

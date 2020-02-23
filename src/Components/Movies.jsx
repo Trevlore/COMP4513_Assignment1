@@ -6,7 +6,7 @@ import MovieFilter from './MovieFilter';
 import MovieList from './MovieList';
 import {generateRegex, getSearchParam} from "../Helpers/Helper";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faStroopwafel} from "@fortawesome/free-solid-svg-icons";
+import {faStroopwafel,spinnerThird,faSync} from "@fortawesome/free-solid-svg-icons";
 
 export const defaultQueryParams = {
     title: "",
@@ -91,7 +91,7 @@ class Movies extends React.Component {
                         onSearch={this.filterOnQuery}
                     />
                     <div className="column has-text-centered">
-                        {this.state.isLoading ? <FontAwesomeIcon icon={faStroopwafel} className="fa-spin fa-10x"/> :
+                        {this.state.isLoading ? <FontAwesomeIcon icon={faSync} className="fa-spin fa-10x"/> :
                             <MovieList movies={this.state.filteredMovies}/>}
                     </div>
                 </div>
