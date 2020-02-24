@@ -1,7 +1,5 @@
 import React from 'react';
 import * as _ from "lodash";
-import NavBar from "./NavBar"
-import FavoritesBar from './FavoritesBar';
 import MovieFilter from './MovieFilter';
 import MovieList from './MovieList';
 import {generateRegex, getSearchParam} from "../Helpers/Helper";
