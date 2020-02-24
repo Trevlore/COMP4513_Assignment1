@@ -1,7 +1,7 @@
 import React from 'react';
 import NavBar from "./NavBar"
 import FavoritesBar from './FavoritesBar';
-import ViewTaps from './ViewTaps';
+import ViewTabs from './ViewTabs';
 import { generateRegex, getSearchParam } from "../Helpers/Helper";
 import { CSSTransition } from 'react-transition-group';
 import About from './About'
