@@ -9,6 +9,20 @@ class MovieList extends React.Component {
     }
 
     RenderMovies = () => {
+        if (this.props.movies.length === 0){
+            return (
+                <tbody>
+                    <tr>
+                        <td/>
+                        <td/>
+                        <td>No Matches</td>
+                        <td/>
+                        <td />
+                    </tr>
+                </tbody>
+            )
+        }
+
         return (
             <tbody>
                 {this.props.movies.map((x) => {
