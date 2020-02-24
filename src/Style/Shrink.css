@@ -3,14 +3,14 @@
 }
 .singleMovie-enter-active {
   transform: translatex(0vh);
-  transition-duration: 0.8s;
+  transition-duration: 1s;
 }
 
 .singleMovie-exit {
-  transform: translatex(100vh);
-  transition-duration: 0.8s;
+  transform: translatex(200vh);
+  transition-duration: 1s;
 
 }
 .singleMovie-exit-active {
-  transform: translatex(100vh);
+  transform: translatex(200vh);
 }
