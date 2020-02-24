@@ -31,7 +31,7 @@ class MovieRoute extends React.Component {
             <main>
                 <nav>
                     <NavBar/>
-                    <FavoritesBar favorites={this.state.favorites}/>
+                    <FavoritesBar addFavorite={this.addFavorite} favorites={this.state.favorites}/>
                 </nav>
                 {renderMe}
             </main>

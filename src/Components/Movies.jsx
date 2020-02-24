@@ -97,7 +97,7 @@ class Movies extends React.Component {
                     <div className="column has-text-centered">
                         {this.state.isLoading ? <FontAwesomeIcon icon={faSync} className="fa-spin fa-10x"/> :
                         <TransitionGroup className="Movies">
-                            <MovieList testfunction={this.testfunction} movies={this.state.filteredMovies}/>
+                            <MovieList testfunction={this.testfunction} movies={this.state.filteredMovies} addFavorite={this.props.addFavorite}/>
                         </TransitionGroup>
                             }
                         
