@@ -10,13 +10,12 @@ class MovieRoute extends React.Component {
 
 
     render() {
-        console.log(this.context);
         const path = this.props.match.path;
         let renderMe;
         if (routeNames.Movies.regex.test(path))
-            renderMe = <Movies addFavorite={this.addFavorite}/>;
+            renderMe = <Movies/>;
         else if (routeNames.MovieDetails.regex.test(path))
-            renderMe = <MovieDetails addFavorite={this.addFavorite}/>;
+            renderMe = <MovieDetails/>;
 
         return (
             <main>

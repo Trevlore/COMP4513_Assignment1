@@ -18,10 +18,18 @@ class App extends React.Component {
         }
     };
 
+    rmFavorite = (id) => {
+        const newState = cloneDeep(this.state);
+        newState.favorites.favoritesArray = newState.favorites.favoritesArray.filter((x) => x.id !== id);
+        this.setState(newState);
+    };
+
+
     state = {
         favorites: {
             favoritesArray: [],
-            addFavorite: this.addFavorite
+            addFavorite: this.addFavorite,
+            rmFavorite: this.rmFavorite
         }
     };
 

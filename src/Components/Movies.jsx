@@ -1,7 +1,5 @@
 import React from 'react';
 import * as _ from "lodash";
-import NavBar from "./NavBar"
-import FavoritesBar from './FavoritesBar';
 import MovieFilter from './MovieFilter';
 import MovieList from './MovieList';
 import {generateRegex, getSearchParam} from "../Helpers/Helper";
@@ -94,7 +92,7 @@ class Movies extends React.Component {
                     <div className="column has-text-centered">
                         {this.state.isLoading ? <FontAwesomeIcon icon={faSync} className="fa-spin fa-10x"/> :
                         
-                            <MovieList movies={this.state.filteredMovies} addFavorite={this.props.addFavorite}/>
+                            <MovieList movies={this.state.filteredMovies}/>
                         
                             }
                         
