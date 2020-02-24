@@ -18,7 +18,7 @@ class MovieList extends React.Component {
                 <TransitionGroup className="Movies">
                 {this.props.movies.map((x) => {
                     return (
-                        <CSSTransition key={this.props.id} enter exit mountOnEnter unmountOnExit timeout={1001} classNames="singleMovie">
+                        <CSSTransition key={this.props.id} enter exit mountOnEnter unmountOnExit timeout={1501} classNames="singleMovie">
                         <SingleMovie
                             addFavorite={this.props.addFavorite}
                             remove={this.props.remove}
