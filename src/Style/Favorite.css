@@ -3,3 +3,9 @@
     width: auto;
     height: auto;
 }
+
+.closeButton{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
