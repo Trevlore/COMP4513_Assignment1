@@ -1,5 +1,5 @@
 import React from "react";
-import ViewTaps from "./ViewTaps"
+import ViewTabs from "./ViewTabs"
 
 
 function DetailsView(props) {
@@ -51,7 +51,7 @@ function DetailsView(props) {
                 </div>
             </div>
             <div className="column">
-                <ViewTaps cast={props.production.cast} crew={props.production.crew} />
+                <ViewTabs cast={props.production.cast} crew={props.production.crew} />
             </div>
         </div>
     )
