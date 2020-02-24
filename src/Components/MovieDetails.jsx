@@ -16,7 +16,7 @@ class MovieDetails extends React.Component {
         // imdb_id
         // https://www.themoviedb.org/movie/imdb_id 
         // https://www.imdb.com/title/imdb_id,
-        const request = await fetch("http://www.randyconnolly.com/funwebdev/3rd/api/movie/movies.php?id=" + getSearchParam("id"));
+        const request = await fetch("https://www.randyconnolly.com/funwebdev/3rd/api/movie/movies.php?id=" + getSearchParam("id"));
         console.log(request)
         let parsedMovie = await request.json();
         
