@@ -7,21 +7,13 @@ class MovieList extends React.Component {
 
     constructor(props) {
         super(props);
-        console.log(this.props.movies)
-        this.state = {movies : [...this.props.movies]}
-    }
-
-    componentWillReceiveProps(newProps) {
-        this.setState({movies : newProps.movies})
-      }
-
-    remove(){
-
+        // console.log(props.movies)
+        // this.state = {movies : this.props.movies}
     }
 
 
     RenderMovies = () => {
-        if (this.state.length === 0){
+        if (this.props.length === 0){
             return (
                 <tbody>
                     <tr>
@@ -37,10 +29,13 @@ class MovieList extends React.Component {
 
         return (
             <tbody>
-                {this.state.movies.map((x) => {
+                <TransitionGroup className="Movies">
+                {this.props.movies.map((x) => {
                     return (
+                        <CSSTransition key={this.props.id} mountOnEnter unmountOnExit timeout={3000} classNames="singleMovie"> 
                         <SingleMovie
                             addFavorite={this.props.addFavorite}
+                            remove={this.props.remove}
                             key={x.id}
                             id={x.id}
                             title={x.title}
@@ -49,8 +44,11 @@ class MovieList extends React.Component {
                             imageUrl={x.poster}
                             show={true}
                         />
+                        </CSSTransition>  
                     )
+                    
                 })}
+                </TransitionGroup>
             </tbody>
 
 

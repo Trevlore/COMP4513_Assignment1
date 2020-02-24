@@ -1,18 +1,16 @@
 .singleMovie-enter {
-  color: red;
   opacity: 0;
 }
 .singleMovie-enter-active {
-  color: red;
+
   opacity: 1;
   transition: opacity 3000ms ease-in;
 }
+
 .singleMovie-exit {
-  color: red;
   opacity: 1;
 }
 .singleMovie-exit-active {
-  color: red;
   opacity: 0;
   transition: opacity 3000ms ease-in;
 }

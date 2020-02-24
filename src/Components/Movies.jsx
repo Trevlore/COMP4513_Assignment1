@@ -7,7 +7,6 @@ import MovieList from './MovieList';
 import {generateRegex, getSearchParam} from "../Helpers/Helper";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSync} from "@fortawesome/free-solid-svg-icons";
-import { CSSTransition, TransitionGroup} from 'react-transition-group';
 
 export const defaultQueryParams = {
     title: "",
@@ -80,10 +79,6 @@ class Movies extends React.Component {
         this.setState(newState);
     };
 
-    testfunction(){
-        // this.state.movies
-    }
-
     render() {
         return (
             <React.Fragment>
@@ -96,9 +91,9 @@ class Movies extends React.Component {
                     />
                     <div className="column has-text-centered">
                         {this.state.isLoading ? <FontAwesomeIcon icon={faSync} className="fa-spin fa-10x"/> :
-                        <TransitionGroup className="Movies">
-                            <MovieList testfunction={this.testfunction} movies={this.state.filteredMovies} addFavorite={this.props.addFavorite}/>
-                        </TransitionGroup>
+                        
+                            <MovieList movies={this.state.filteredMovies} addFavorite={this.props.addFavorite}/>
+                        
                             }
                         
                     </div>

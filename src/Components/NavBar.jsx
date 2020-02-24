@@ -17,7 +17,7 @@ class NavBar extends React.Component {
                 <Modal isOpen={this.state.showAbout} className="">
                     <header className="modal-card-head">
                         <p className="modal-card-title">About</p>
-                        <button className="delete" aria-label="close"></button>
+                       
                     </header>
                     <section className="modal-card-body">
                         <ul>
