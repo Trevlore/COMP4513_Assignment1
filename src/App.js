@@ -1,11 +1,10 @@
 import React from 'react';
 import './App.css';
 import Home from './Components/Home';
-import MovieDetails from './Components/MovieDetails';
-import Movies from './Components/Movies';
-import { Route, withRouter, Switch, Redirect } from "react-router-dom";
+import { Route, withRouter, Switch } from "react-router-dom";
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-
+import MovieRoute from "./Components/MovieRoute";
+import {routeNames} from "./Helpers/RouteNames"
 function App({ location }) {
   return (
 
@@ -17,9 +16,9 @@ function App({ location }) {
       >
         <section className="route-section">
           <Switch>
-            <Route path="/" component={Home} exact />
-            <Route path="/Movies" component={Movies} exact />
-            <Route path="/Movies/Details" component={MovieDetails} exact />
+            <Route path={routeNames.Home.name} component={Home} exact />
+            <Route path={routeNames.Movies.name} component={MovieRoute} exact />
+            <Route path={routeNames.MovieDetails.name} component={MovieRoute} exact />
           </Switch>
         </section>
       </CSSTransition>

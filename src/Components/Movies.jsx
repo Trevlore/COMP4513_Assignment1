@@ -6,7 +6,7 @@ import MovieFilter from './MovieFilter';
 import MovieList from './MovieList';
 import {generateRegex, getSearchParam} from "../Helpers/Helper";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faStroopwafel,spinnerThird,faSync} from "@fortawesome/free-solid-svg-icons";
+import {faSync} from "@fortawesome/free-solid-svg-icons";
 
 export const defaultQueryParams = {
     title: "",
@@ -58,7 +58,7 @@ class Movies extends React.Component {
             newState.isLoading = false;
             this.setState(newState);
         }
-        this.filterOnQuery()
+        this.filterOnQuery();
     }
 
     updateQuery = (searchParams) => {
@@ -81,9 +81,8 @@ class Movies extends React.Component {
 
     render() {
         return (
-            <div>
-                <NavBar/>
-                <FavoritesBar favorites={[]}/>
+            <React.Fragment>
+
                 <div className="columns">
                     <MovieFilter
                         updateQuery={this.updateQuery}
@@ -95,7 +94,7 @@ class Movies extends React.Component {
                             <MovieList movies={this.state.filteredMovies}/>}
                     </div>
                 </div>
-            </div>
+            </React.Fragment>
         )
     }
 }

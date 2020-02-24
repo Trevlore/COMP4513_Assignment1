@@ -1,11 +1,11 @@
 export const routeNames = {
     Movies: {
-        name: "/Movie",
-        regex: new RegExp("^/Movie(\\?.*)?$", 'i')
+        name: "/Movies",
+        regex: new RegExp("^/Movies(\\?.*)?$", 'i')
     },
     MovieDetails: {
-        name: "/Movie/Details",
-        regex: new RegExp("^\/Movie\/Details(\\?.*)?$", 'i')
+        name: "/Movies/Details",
+        regex: new RegExp("^/Movies/Details(\\?.*)?$", 'i')
     },
     Home: {
         name: "/",
