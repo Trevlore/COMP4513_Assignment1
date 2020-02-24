@@ -10,7 +10,6 @@ class Home extends React.Component {
     constructor(props) {
         super(props);
         this.state = { searchQuery: "", searchEnter: null, transition: true };
-        this.onKeyDown = this.onKeyDown.bind(this);
     }
     onChange = (e) => {
         const currElem = e.target;
@@ -33,14 +32,6 @@ class Home extends React.Component {
         "borderBottomLeftRadius": "0",
         "borderTopLeftRadius": "0"
     };
-
-    onKeyDown(e) {
-        if (e.key === 'Enter') {
-            const newState = _.cloneDeep(this.state);
-            newState.searchEnter = true;
-            this.setState(newState);
-        }
-    }
 
     exit(command) {
         const newState = _.cloneDeep(this.state);
@@ -71,7 +62,7 @@ class Home extends React.Component {
 
                             <div className="field">
                                 <div className="control">
-                                    <input name="searchQuery" onChange={this.onChange} onKeyDown={this.onKeyDown} className="input" type="text" placeholder="Title" />
+                                    <input name="searchQuery" onChange={this.onChange} className="input" type="text" placeholder="Title" />
                                 </div>
                             </div>
                             <div className="level">

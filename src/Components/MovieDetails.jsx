@@ -13,9 +13,6 @@ class MovieDetails extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            id: getSearchParam("id")
-        }
     }
 
     async componentDidMount() {
@@ -24,14 +21,16 @@ class MovieDetails extends React.Component {
         // https://www.themoviedb.org/movie/imdb_id 
         // https://www.imdb.com/title/imdb_id,
         const request = await fetch("http://www.randyconnolly.com/funwebdev/3rd/api/movie/movies.php?id=" + getSearchParam("id"));
+        console.log(request)
         let parsedMovie = await request.json();
+        
         this.setState({ movie: parsedMovie });
     }
 
     
     render() {
 
-        if (!this.state.movie) {
+        if (!this.state) {
             return (<div>loading</div>)
         } else {
             console.log(this.state.movie)

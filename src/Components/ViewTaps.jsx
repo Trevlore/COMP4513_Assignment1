@@ -33,7 +33,7 @@ class ViewTaps extends React.Component {
 
     toggleActive = (id) => document.getElementById(id).classList.toggle('is-active');
 
-    renderCrew() {
+    renderCrew(crew) {
         return (
             <table className="table is-fullwidth" style={{ overflowX: "auto" }}>
                 <thead>
@@ -45,7 +45,7 @@ class ViewTaps extends React.Component {
                     </tr>
                 </thead>
                 <tbody>
-                    {this.props.crew.map((crew) => {
+                    {crew != null ? crew.map((crew) => {
                         return (
                             <SingleCrew
                                 key={crew.id}
@@ -56,13 +56,14 @@ class ViewTaps extends React.Component {
                                 name={crew.name}
                             />
                         )
-                    })}
+                    }): <tr></tr>}
                 </tbody>
             </table>
         )
     }
 
-    renderCast() {
+    renderCast(cast) {
+        
         return (
             <table className="table is-fullwidth" style={{ overflowX: "auto" }}>
                 <thead>
@@ -73,7 +74,7 @@ class ViewTaps extends React.Component {
                     </tr>
                 </thead>
                 <tbody>
-                    {this.props.cast.map((cast) => {
+                    {cast != null ? cast.map((cast) => {
                         return (
                             <SingleCast
                                 key={cast.id}
@@ -86,7 +87,7 @@ class ViewTaps extends React.Component {
                                 order={cast.order}
                             />
                         )
-                    })}
+                    }) : <tr></tr>}
                 </tbody>
             </table>
         )
@@ -94,6 +95,7 @@ class ViewTaps extends React.Component {
 
     render() {
         const { cast, crew } = this.props
+        console.log(this.props)
         return (
             <div id="CastAndCrew" className="column container box">
                 <div className="tabs">
@@ -105,7 +107,7 @@ class ViewTaps extends React.Component {
                 </div>
                 <div className="table-container">
 
-                    {this.state.active == "Cast" ? this.renderCast() : this.renderCrew()}
+                    {this.state.active === "Cast" ? this.renderCast(cast) : this.renderCrew(crew)}
 
                 </div>
 

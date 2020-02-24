@@ -43,11 +43,11 @@ class MovieList extends React.Component {
                             <th className="column" />{/*Heart and View*/}
                         </tr>
                     </thead>
-                    <TransitionGroup>
-                        <CSSTransition exit={true} in={this.state.transition} classNames="singleMovie" timeout={1000} >
+                    {/* <TransitionGroup>
+                        <CSSTransition exit={true} in={this.state.transition} classNames="singleMovie" timeout={1000}> */}
                             <this.RenderMovies />
-                        </CSSTransition>
-                    </TransitionGroup>
+                        {/* </CSSTransition>
+                    </TransitionGroup> */}
 
                 </table>
             </div>
