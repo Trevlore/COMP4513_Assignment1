@@ -1,6 +1,7 @@
 import React from 'react';
 import { getSearchParam } from "../Helpers/Helper";
 import DetailsView from './DetailsView'
+import ViewTabs from './ViewTabs'
 import CastView from './CastView'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../Style/Details.css"
@@ -19,18 +20,18 @@ class MovieDetails extends React.Component {
         // https://www.imdb.com/title/imdb_id,
         const request = await fetch("https://www.randyconnolly.com/funwebdev/3rd/api/movie/movies.php?id=" + getSearchParam("id"));
         let parsedMovie = await request.json();
-        this.setState({ movie: parsedMovie ,active: 'Details', passive: 'Cast' });
+        this.setState({ movie: parsedMovie, active: 'Details', passive: 'Cast' });
     }
 
     castButton = (e) => {
         console.log("castButton")
-            this.setState({
-                active: this.state.passive,
-                passive: this.state.active
-            });
+        this.setState({
+            active: this.state.passive,
+            passive: this.state.active
+        });
 
-        }
-    
+    }
+
     toggleActive = (id) => document.getElementById(id).classList.toggle('is-active');
 
     renderCast() {
@@ -46,14 +47,19 @@ class MovieDetails extends React.Component {
     }
 
     render() {
-
-        if (!this.state) {
+         if (!this.state) {
             return (<FontAwesomeIcon icon={faSync} className="is-text-centered fa-10x fa-spin" />)
         } else {
-            
             return (
                 <div className="View">
-                    {this.state.active === "Details" ? this.renderDetails() : this.renderCast()}
+                    <div className="columns">
+                        <div className="column is-two-thirds">
+                            {this.state.active === "Details" ? this.renderDetails() : this.renderCast()}
+                        </div>
+                        <div className="column">
+                            <ViewTabs castButton={this.castButton} cast={this.state.movie.production.cast} crew={this.state.movie.production.crew} />
+                        </div>
+                    </div>
                 </div>
             )
         }

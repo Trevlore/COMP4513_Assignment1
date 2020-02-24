@@ -11,9 +11,7 @@ function DetailsView(props) {
     const context = useContext(FavoriteContext);
     const posterLink = "https://image.tmdb.org/t/p/w500/";
     return (
-        <div className="columns">
-            <div className="column is-two-thirds">
-                <div className="columns ">
+                 <div className="columns ">
 
                     <div className="column is-two-fifths">
                         <header className="card-header"><a onClick={addFavorite} className="card-footer-item ">Add to
@@ -53,11 +51,9 @@ function DetailsView(props) {
                     </div>
 
                 </div>
-            </div>
-            <div className="column">
-                <ViewTabs castButton={props.castButton} cast={props.production.cast} crew={props.production.crew} />
-            </div>
-        </div>
+                
+
+     
     )
 }
 export default DetailsView;
