@@ -12,26 +12,13 @@ class MovieList extends React.Component {
 
 
     RenderMovies = () => {
-        if (this.props.length === 0){
-            return (
-                <tbody>
-                    <tr>
-                        <td/>
-                        <td/>
-                        <td>No Matches</td>
-                        <td/>
-                        <td />
-                    </tr>
-                </tbody>
-            )
-        }
-
+        if (this.props.movies.length != 0){
         return (
             <tbody>
                 <TransitionGroup className="Movies">
                 {this.props.movies.map((x) => {
                     return (
-                        <CSSTransition key={this.props.id} enter exit mountOnEnter unmountOnExit timeout={5000} classNames="singleMovie">
+                        <CSSTransition key={this.props.id} enter exit mountOnEnter unmountOnExit timeout={1001} classNames="singleMovie">
                         <SingleMovie
                             addFavorite={this.props.addFavorite}
                             remove={this.props.remove}
@@ -49,8 +36,10 @@ class MovieList extends React.Component {
                 })}
                 </TransitionGroup>
             </tbody>
-
-
+        )
+    }
+        return (
+            <tbody><TransitionGroup className="Movies"><tr><td/><td/><td>No Matches</td><td/><td/></tr></TransitionGroup></tbody>
         )
     };
 
