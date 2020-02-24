@@ -1,9 +1,14 @@
-import React from "react";
+import React, {useContext} from "react";
 import ViewTabs from "./ViewTabs"
+import {FavoriteContext} from "../Context/FavoriteContex";
 
 
 function DetailsView(props) {
-    console.log(props)
+    function addFavorite() {
+        context.addFavorite({url: props.poster, id: props.id, alt: props.title})
+    }
+
+    const context = useContext(FavoriteContext);
     const posterLink = "https://image.tmdb.org/t/p/w500/";
     return (
         <div className="columns">
@@ -11,10 +16,11 @@ function DetailsView(props) {
                 <div className="columns ">
 
                     <div className="column is-two-fifths">
-                        <header className="card-header"><a className="card-footer-item ">Add to favorites</a></header>
+                        <header className="card-header"><a onClick={addFavorite} className="card-footer-item ">Add to
+                            favorites</a></header>
                         <div className="card-image">
                             <figure className="image is-2by3">
-                                <img src={posterLink + props.poster} alt="Poster" />
+                                <img src={posterLink + props.poster} alt="Poster"/>
                             </figure>
                         </div>
                     </div>

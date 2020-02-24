@@ -4,10 +4,10 @@ import SingleFavorite from "./SingleFavorite";
 
 class FavoritesBar extends React.Component {
 
-        renderList() {
-        return this.props.favorites.map((favorite, index) =>
-                    <SingleFavorite favorite={favorite} key={favorite.id}/>
 
+    renderList() {
+        return this.props.favorites.map((favorite, index) =>
+            <SingleFavorite favorite={favorite} key={favorite.id}/>
         );
     }
 

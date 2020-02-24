@@ -4,22 +4,13 @@ import FavoritesBar from "./FavoritesBar";
 import {routeNames} from "../Helpers/RouteNames";
 import Movies from "./Movies";
 import MovieDetails from "./MovieDetails";
-import {cloneDeep} from "lodash"
+import {FavoriteContext} from "../Context/FavoriteContex";
 
 class MovieRoute extends React.Component {
-    state = {
-        favorites: []
-    };
 
-    addFavorite = (favObj) => {
-        const newState = cloneDeep(this.state);
-        if(!newState.favorites.find(x=>x.id === favObj.id)){
-            newState.favorites.push(favObj);
-            this.setState(newState);
-        }
-    };
 
     render() {
+        console.log(this.context);
         const path = this.props.match.path;
         let renderMe;
         if (routeNames.Movies.regex.test(path))
@@ -31,7 +22,7 @@ class MovieRoute extends React.Component {
             <main>
                 <nav>
                     <NavBar/>
-                    <FavoritesBar addFavorite={this.addFavorite} favorites={this.state.favorites}/>
+                    <FavoritesBar favorites={this.context.favoritesArray}/>
                 </nav>
                 {renderMe}
             </main>
@@ -39,5 +30,7 @@ class MovieRoute extends React.Component {
 
     }
 }
+
+MovieRoute.contextType = FavoriteContext;
 
 export default MovieRoute
