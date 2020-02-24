@@ -22,8 +22,17 @@ class SingleMovie extends React.Component {
         this.props.addFavorite({url: this.props.imageUrl, id: this.props.id, alt: this.props.title});
     };
 
+
+    toggleFilter(){
+        console.log('toggleFilter')
+        this.setState({
+          filter: !this.state.filter
+      })
+    }
+
     render() {
         return (
+            <CSSTransition  in={this.state.filter} unmountOnExit exit={true} timeout={3000} classNames="singleMovie"> 
             <tr>
                 <td>
                     <figure className="image is-fullwidth">
@@ -38,6 +47,7 @@ class SingleMovie extends React.Component {
                     <Link to={"/Movies/Details?id=" + this.props.id} path={this.props.id}  className="button is-1" style={{margin : "0"}}>View</Link>
                 </td>
             </tr>
+            </CSSTransition>   
         )
     }
 }
