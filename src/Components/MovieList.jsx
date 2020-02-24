@@ -1,8 +1,6 @@
 import React from 'react';
 import SingleMovie from "./SingleMovie";
 import '../Style/Table.css'
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
-
 class MovieList extends React.Component {
 
     constructor(props) {
@@ -26,6 +24,8 @@ class MovieList extends React.Component {
                     )
                 })}
             </tbody>
+
+
         )
     };
 
@@ -43,12 +43,7 @@ class MovieList extends React.Component {
                             <th className="column" />{/*Heart and View*/}
                         </tr>
                     </thead>
-                    {/* <TransitionGroup>
-                        <CSSTransition exit={true} in={this.state.transition} classNames="singleMovie" timeout={1000}> */}
-                            <this.RenderMovies />
-                        {/* </CSSTransition>
-                    </TransitionGroup> */}
-
+                    <this.RenderMovies />
                 </table>
             </div>
         )
