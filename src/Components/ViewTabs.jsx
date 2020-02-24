@@ -1,9 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import SingleCrew from "./SingleCrew"
 import SingleCast from "./SingleCast"
 import "../Style/Table.css"
-
 
 
 class ViewTabs extends React.Component {
@@ -89,15 +88,14 @@ class ViewTabs extends React.Component {
                                 castButton={this.props.castButton}
                             />
                         )
-                    }) : <tr></tr>}
+                    }) : <tr/>}
                 </tbody>
             </table>
         )
     }
 
     render() {
-        const { cast, crew } = this.props
-        console.log(this.props)
+        const {cast, crew} = this.props;
         return (
             <div id="CastAndCrew" className="column container box">
                 <div className="tabs">
