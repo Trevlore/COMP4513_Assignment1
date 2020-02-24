@@ -81,7 +81,7 @@ class Movies extends React.Component {
     };
 
     testfunction(){
-
+        // this.state.movies
     }
 
     render() {

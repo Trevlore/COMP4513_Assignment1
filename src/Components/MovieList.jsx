@@ -40,7 +40,7 @@ class MovieList extends React.Component {
                 {this.state.movies.map((x) => {
                     return (
                         <SingleMovie
-                            remove={this.remove}
+                            addFavorite={this.props.addFavorite}
                             key={x.id}
                             id={x.id}
                             title={x.title}
