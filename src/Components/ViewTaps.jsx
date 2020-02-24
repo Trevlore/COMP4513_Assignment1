@@ -103,7 +103,7 @@ class ViewTaps extends React.Component {
                         <Link to="/Movies" path={"/Movies"} className="button is-1 is-right" style={{ margin: "0", }}>Back</Link>
                     </ul>
                 </div>
-                <div className="box table-container">
+                <div className="table-container">
 
                     {this.state.active == "Cast" ? this.renderCast() : this.renderCrew()}
 
