@@ -55,7 +55,7 @@ function DetailsView(props) {
                 </div>
             </div>
             <div className="column">
-                <ViewTabs cast={props.production.cast} crew={props.production.crew} />
+                <ViewTabs castButton={props.castButton} cast={props.production.cast} crew={props.production.crew} />
             </div>
         </div>
     )

@@ -38,8 +38,8 @@ class ViewTabs extends React.Component {
             <table className="table is-fullwidth" style={{ overflowX: "auto" }}>
                 <thead>
                     <tr className="columns">
-                        <th className="column">Character</th>
-                        <th className="column">Actor</th>
+                        <th className="column">Department</th>
+                        <th className="column">Job</th>
                         <th className="column">Name</th>
                         <th className="column" />{/*View*/}
                     </tr>
@@ -61,6 +61,7 @@ class ViewTabs extends React.Component {
             </table>
         )
     }
+
 
     renderCast(cast) {
         
@@ -85,6 +86,7 @@ class ViewTabs extends React.Component {
                                 gender={cast.gender}
                                 name={cast.name}
                                 order={cast.order}
+                                castButton={this.props.castButton}
                             />
                         )
                     }) : <tr></tr>}
