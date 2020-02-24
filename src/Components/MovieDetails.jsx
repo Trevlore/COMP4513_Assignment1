@@ -1,13 +1,9 @@
 import React from 'react';
-import NavBar from "./NavBar"
-import FavoritesBar from './FavoritesBar';
-import ViewTabs from './ViewTabs';
-import { generateRegex, getSearchParam } from "../Helpers/Helper";
-import { CSSTransition } from 'react-transition-group';
-import About from './About'
+import { getSearchParam } from "../Helpers/Helper";
 import DetailsView from './DetailsView'
-
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import "../Style/Details.css"
+import {faSync} from "@fortawesome/free-solid-svg-icons";
 
 class MovieDetails extends React.Component {
 
@@ -31,15 +27,11 @@ class MovieDetails extends React.Component {
     render() {
 
         if (!this.state) {
-            return (<div>loading</div>)
+            return (<FontAwesomeIcon icon={faSync} className="is-text-centered fa-10x"/>)
         } else {
-            console.log(this.state.movie)
             const { production, imdb_id, title, tmdb_id, id, poster, details } = this.state.movie;
             return (
                 <div className="MovieDetails">
-                    <NavBar />
-                    <FavoritesBar favorites={[]} />
-                    <About />
                     <DetailsView title={title} poster={poster} production={production} details={details}/>
                 </div>
             )
