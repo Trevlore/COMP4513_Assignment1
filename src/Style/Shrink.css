@@ -1,16 +1,19 @@
-.singleMovie-enter {
-  opacity: 0;
+.singleMovie-enter  {
+  transform: translatex(100vh);
+  color : red;
 }
 .singleMovie-enter-active {
-
-  opacity: 1;
-  transition: opacity 3000ms ease-in;
+  transform: translatex(0vh);
+  transition-duration: 3s;
+  color : blue
 }
 
 .singleMovie-exit {
-  opacity: 1;
+  transform: translatex(100vh);
+  transition-duration: 3s;
+  color : blue
 }
 .singleMovie-exit-active {
-  opacity: 0;
-  transition: opacity 3000ms ease-in;
+  transform: translatex(100vh);
+  color : red;
 }

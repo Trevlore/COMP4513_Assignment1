@@ -1,8 +1,8 @@
 import React from 'react';
 import SingleMovie from "./SingleMovie";
 import '../Style/Table.css'
-import {CSSTransition, TransitionGroup} from 'react-transition-group';
-
+import '../Style/Shrink.css'
+import { CSSTransition, TransitionGroup} from 'react-transition-group';
 
 class MovieList extends React.Component {
 
@@ -12,42 +12,45 @@ class MovieList extends React.Component {
 
 
     RenderMovies = () => {
-        if (this.props.length === 0) {
+        if (this.props.length === 0){
             return (
                 <tbody>
-                <tr>
-                    <td/>
-                    <td/>
-                    <td>No Matches</td>
-                    <td/>
-                    <td/>
-                </tr>
+                    <tr>
+                        <td/>
+                        <td/>
+                        <td>No Matches</td>
+                        <td/>
+                        <td />
+                    </tr>
                 </tbody>
             )
         }
+
         return (
             <tbody>
-            <TransitionGroup className="Movies">
+                <TransitionGroup className="Movies">
                 {this.props.movies.map((x) => {
                     return (
-                        <CSSTransition key={this.props.id} mountOnEnter unmountOnExit timeout={3000}
-                                       classNames="singleMovie">
-                            <SingleMovie
-                                remove={this.props.remove}
-                                key={x.id}
-                                id={x.id}
-                                title={x.title}
-                                releaseDate={x.release_date.getFullYear().toString()}
-                                rating={x.ratings.average}
-                                imageUrl={x.poster}
-                                show={true}
-                            />
-                        </CSSTransition>
+                        <CSSTransition key={this.props.id} enter exit mountOnEnter unmountOnExit timeout={5000} classNames="singleMovie">
+                        <SingleMovie
+                            addFavorite={this.props.addFavorite}
+                            remove={this.props.remove}
+                            key={x.id}
+                            id={x.id}
+                            title={x.title}
+                            releaseDate={x.release_date.getFullYear().toString()}
+                            rating={x.ratings.average}
+                            imageUrl={x.poster}
+                            show={true}
+                        />
+                        </CSSTransition>  
                     )
-
+                    
                 })}
-            </TransitionGroup>
+                </TransitionGroup>
             </tbody>
+
+
         )
     };
 
@@ -55,26 +58,25 @@ class MovieList extends React.Component {
         return (
             <div className="box table-container">
                 <h1 className="title">Movie List</h1>
-                <table className="table is-fullwidth" style={{overflowX: "auto"}}>
+                <table className="table is-fullwidth" style={{ overflowX: "auto" }}>
                     <thead>
-                    <tr className="columns">
-                        <th className="column"/>
-                        {/*Image*/}
-                        <th className="column">Title</th>
-                        <th className="column">Year</th>
-                        <th className="column">Rating</th>
-                        <th className="column"/>
-                        {/*Heart and View*/}
-                    </tr>
+                        <tr className="columns">
+                            <th className="column" />{/*Image*/}
+                            <th className="column">Title</th>
+                            <th className="column">Year</th>
+                            <th className="column">Rating</th>
+                            <th className="column" />{/*Heart and View*/}
+                        </tr>
                     </thead>
 
-                    <this.RenderMovies/>
+                    <this.RenderMovies />
 
                 </table>
             </div>
         )
     }
 }
+ 
 
 
 export default MovieList;
