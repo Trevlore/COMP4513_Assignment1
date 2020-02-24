@@ -8,7 +8,7 @@ class SingleMovie extends React.Component {
     posterLink = "https://image.tmdb.org/t/p/w154/";
 
     onFavsClick = (e)=>{
-        this.props.addFavorite(this.props.imageUrl);
+        this.props.addFavorite({url: this.props.imageUrl, id: this.props.id, alt: this.props.title});
     };
 
     render() {

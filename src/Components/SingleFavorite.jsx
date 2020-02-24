@@ -1,16 +1,19 @@
 import React from "react";
+import "../Style/Favorite.css"
 
+class SingleFavorite extends React.Component {
+    posterUrl = "https://image.tmdb.org/t/p/w92/";
 
-  class SingleFavorite extends React.Component {
-   
-     render() {
-       return (
-         <div className="column is-1">
-           <img src={"https://image.tmdb.org/t/p/w185/" + this.props.favorite.poster} alt="Sample Title" />
-         </div>
-       )
-     }
-   }
-   
+    render() {
+        return (
+            <div className="column">
+                <figure className="image">
+                    <img className="favImage" src={this.posterUrl + this.props.favorite.url} alt={this.props.favorite.alt}/>
+                </figure>
+            </div>
+        )
+    }
+}
+
 
 export default SingleFavorite;
