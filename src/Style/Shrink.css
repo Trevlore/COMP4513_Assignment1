@@ -1,18 +1,18 @@
-
 .singleMovie-enter {
-    opacity: 0.01;
-  }
-
-  .singleMovie-enter.fade-enter-active {
-    opacity: 1;
-    transition: opacity 300ms ease-in;
-  }
-
-  .singleMovie-exit {
-    opacity: 1;
-  }
-
-  .singleMovie-exit.fade-exit-active {
-    opacity: 0.01;
-    transition: opacity 300ms ease-in;
-  }
+  color: red;
+  opacity: 0;
+}
+.singleMovie-enter-active {
+  color: red;
+  opacity: 1;
+  transition: opacity 3000ms ease-in;
+}
+.singleMovie-exit {
+  color: red;
+  opacity: 1;
+}
+.singleMovie-exit-active {
+  color: red;
+  opacity: 0;
+  transition: opacity 3000ms ease-in;
+}

@@ -6,7 +6,7 @@ import "../Style/Table.css"
 
 
 
-class ViewTaps extends React.Component {
+class ViewTabs extends React.Component {
 
     constructor(props) {
         super(props);
@@ -116,4 +116,4 @@ class ViewTaps extends React.Component {
     }
 }
 
-export default ViewTaps;
+export default ViewTabs;

@@ -2,6 +2,7 @@ import React from "react";
 import ticket from "../Images/fa-ticket-alt.png";
 import { Link } from "react-router-dom";
 import Modal from 'react-modal';
+import "../Style/About.css"
 
 
 class NavBar extends React.Component {
@@ -29,8 +30,6 @@ class NavBar extends React.Component {
                     <footer className="modal-card-foot">
                         <button className="button is-primary" onClick={this.close}>Close</button>
                     </footer>
-
-
                 </Modal>
 
                 <div className="navbar-brand">

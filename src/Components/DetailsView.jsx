@@ -1,5 +1,5 @@
 import React from "react";
-import ViewTaps from "./ViewTaps"
+import ViewTabs from "./ViewTabs"
 
 
 function DetailsView(props) {
@@ -17,8 +17,6 @@ function DetailsView(props) {
                                 <img src={posterLink + props.poster} alt="Poster" />
                             </figure>
                         </div>
-
-
                     </div>
 
                     <div className="column">
@@ -51,7 +49,7 @@ function DetailsView(props) {
                 </div>
             </div>
             <div className="column">
-                <ViewTaps cast={props.production.cast} crew={props.production.crew} />
+                <ViewTabs cast={props.production.cast} crew={props.production.crew} />
             </div>
         </div>
     )

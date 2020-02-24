@@ -1,15 +1,27 @@
 import React from 'react';
 import SingleMovie from "./SingleMovie";
 import '../Style/Table.css'
+import { CSSTransition, TransitionGroup} from 'react-transition-group';
+
 class MovieList extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { movie: this.props.movie };
+        console.log(this.props.movies)
+        this.state = {movies : [...this.props.movies]}
     }
 
+    componentWillReceiveProps(newProps) {
+        this.setState({movies : newProps.movies})
+      }
+
+    remove(){
+
+    }
+
+
     RenderMovies = () => {
-        if (this.props.movies.length === 0){
+        if (this.state.length === 0){
             return (
                 <tbody>
                     <tr>
@@ -25,15 +37,17 @@ class MovieList extends React.Component {
 
         return (
             <tbody>
-                {this.props.movies.map((x) => {
+                {this.state.movies.map((x) => {
                     return (
                         <SingleMovie
+                            remove={this.remove}
                             key={x.id}
                             id={x.id}
                             title={x.title}
                             releaseDate={x.release_date.getFullYear().toString()}
                             rating={x.ratings.average}
                             imageUrl={x.poster}
+                            show={true}
                         />
                     )
                 })}
@@ -57,11 +71,15 @@ class MovieList extends React.Component {
                             <th className="column" />{/*Heart and View*/}
                         </tr>
                     </thead>
+
                     <this.RenderMovies />
+
                 </table>
             </div>
         )
     }
 }
+ 
+
 
 export default MovieList;
