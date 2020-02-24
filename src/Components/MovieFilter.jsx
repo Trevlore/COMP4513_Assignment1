@@ -94,7 +94,6 @@ class MovieFilter extends React.Component {
     };
 
     runSearch = (e)=>{
-        console.dir(e);
         this.props.onSearch();
     };
 
