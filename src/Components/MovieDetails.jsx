@@ -12,6 +12,7 @@ class MovieDetails extends React.Component {
     constructor(props) {
         super(props);
         this.castButton = this.castButton.bind(this)
+        this.backToDetailsButton = this.backToDetailsButton.bind(this)
     }
 
     async componentDidMount() {
@@ -27,11 +28,16 @@ class MovieDetails extends React.Component {
         console.log("castButton");
         this.setState({active: 'Cast', crew: cast_id});
     }
+
+    backToDetailsButton() {
+        console.log("castButton");
+        this.setState({active: 'Details'});
+    }
   
     renderCast() {
         const { production } = this.state.movie;
         return (
-            <CastView production={production} />)
+            <CastView castButton={this.backToDetailsButton} production={production} />)
     }
 
     renderDetails() {
