@@ -2,8 +2,6 @@ import React from "react";
 import {Link} from "react-router-dom";
 import SingleCrew from "./SingleCrew"
 import SingleCast from "./SingleCast"
-import "../Style/Table.css"
-
 
 class ViewTabs extends React.Component {
 
@@ -15,7 +13,6 @@ class ViewTabs extends React.Component {
         }
     }
 
-
     tapHandler = (e) => {
         const currElem = e.currentTarget;
         const id = currElem.getAttribute('id');
@@ -26,28 +23,28 @@ class ViewTabs extends React.Component {
                 active: this.state.passive,
                 passive: this.state.active
             });
-
         }
     };
 
     toggleActive = (id) => document.getElementById(id).classList.toggle('is-active');
 
     renderCrew(crew) {
+        console.log("renderCrew")
+        console.log(crew)
         return (
             <table className="table is-fullwidth" style={{ overflowX: "auto" }}>
                 <thead>
-                    <tr className="columns">
+                    <tr className="columns"  style={{  'margin-bottom': '0rem' }}  >
                         <th className="column">Department</th>
                         <th className="column">Job</th>
                         <th className="column">Name</th>
-                        <th className="column" />{/*View*/}
                     </tr>
                 </thead>
-                <tbody>
+                <tbody style={{paddingtop: "1.1em"}}>
                     {crew != null ? crew.map((crew) => {
                         return (
                             <SingleCrew
-                                key={crew.id}
+                                key={crew.credit_id}
                                 id={crew.id}
                                 credit_id={crew.credit_id}
                                 department={crew.department}
@@ -55,7 +52,7 @@ class ViewTabs extends React.Component {
                                 name={crew.name}
                             />
                         )
-                    }): <tr></tr>}
+                    }): <tr>No Crew Found</tr>}
                 </tbody>
             </table>
         )
@@ -63,11 +60,13 @@ class ViewTabs extends React.Component {
 
 
     renderCast(cast) {
-        
+        console.log("renderCast")
+        console.log(cast)
         return (
+            
             <table className="table is-fullwidth" style={{ overflowX: "auto" }}>
                 <thead>
-                    <tr className="columns">
+                    <tr className="columns"  style={{  'margin-bottom': '0rem' }}>
                         <th className="column">Character</th>
                         <th className="column">Actor</th>
                         <th className="column" />{/*View*/}
@@ -77,7 +76,7 @@ class ViewTabs extends React.Component {
                     {cast != null ? cast.map((cast) => {
                         return (
                             <SingleCast
-                                key={cast.id}
+                                key={cast.credit_id}
                                 id={cast.id}
                                 cast_id={cast.cast_id}
                                 character={cast.character}
@@ -88,7 +87,7 @@ class ViewTabs extends React.Component {
                                 castButton={this.props.castButton}
                             />
                         )
-                    }) : <tr/>}
+                    }) : <tr>No Cast Found</tr>}
                 </tbody>
             </table>
         )
@@ -107,7 +106,7 @@ class ViewTabs extends React.Component {
                 </div>
                 <div className="table-container">
 
-                    {this.state.active === "Cast" ? this.renderCast(cast) : this.renderCrew(crew)}
+                    {this.state.active == "Cast" ? this.renderCast(cast) : this.renderCrew(crew)}
 
                 </div>
 
