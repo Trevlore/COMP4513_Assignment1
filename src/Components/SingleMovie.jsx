@@ -7,6 +7,10 @@ class SingleMovie extends React.Component {
 
     posterLink = "https://image.tmdb.org/t/p/w154/";
 
+    onFavsClick = (e)=>{
+        this.props.addFavorite(this.props.imageUrl);
+    };
+
     render() {
         return (
             <tr>
@@ -19,7 +23,7 @@ class SingleMovie extends React.Component {
                 <td>{this.props.releaseDate}</td>
                 <td>{this.props.rating}</td>
                 <td className="">
-                    <button className="button is-1"><FontAwesomeIcon icon={faHeart}  className="fa fa-heart"/></button>
+                    <button onClick={this.onFavsClick} className="button is-1"><FontAwesomeIcon icon={faHeart}  className="fa fa-heart"/></button>
                     <Link to={"/Movies/Details?id=" + this.props.id} path={this.props.id}  className="button is-1" style={{margin : "0"}}>View</Link>
                 </td>
             </tr>

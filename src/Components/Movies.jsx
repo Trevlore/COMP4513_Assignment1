@@ -89,7 +89,7 @@ class Movies extends React.Component {
                     />
                     <div className="column has-text-centered">
                         {this.state.isLoading ? <FontAwesomeIcon icon={faSync} className="fa-spin fa-10x"/> :
-                            <MovieList movies={this.state.filteredMovies}/>}
+                            <MovieList addFavorite={this.props.addFavorite} movies={this.state.filteredMovies}/>}
                     </div>
                 </div>
             </React.Fragment>

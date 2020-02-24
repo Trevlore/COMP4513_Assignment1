@@ -28,6 +28,7 @@ class MovieList extends React.Component {
                 {this.props.movies.map((x) => {
                     return (
                         <SingleMovie
+                            addFavorite={this.props.addFavorite}
                             key={x.id}
                             id={x.id}
                             title={x.title}
