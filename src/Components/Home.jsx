@@ -42,13 +42,14 @@ class Home extends React.Component {
 
     render() {
         switch (this.state.searchEnter) {
-            case null:
-                return this.renderNormal();
+
             case "show":
                 return (<Redirect push to={"/movies"} />);
             case "search":
                 return (<Redirect push to={"/movies?title=" + this.state.searchQuery} />)
-          }
+            default:
+                return this.renderNormal();
+        }
     }
 
 
@@ -66,8 +67,8 @@ class Home extends React.Component {
                                 </div>
                             </div>
                             <div className="level">
-                                <a onClick={() => this.exit("show")} className="level-item has-text-centered button is-block is-info">Show All Movies</a>
-                                <a onClick={() => this.exit("search")} className="level-item has-text-centered button is-block is-info">Search Movies</a>
+                                <div onClick={() => this.exit("show")} className="level-item has-text-centered button is-block is-info">Show All Movies</div>
+                                <div onClick={() => this.exit("search")} className="level-item has-text-centered button is-block is-info">Search Movies</div>
                             </div>
                         </div>
                     </CSSTransition>
