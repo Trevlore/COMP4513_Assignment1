@@ -21,7 +21,8 @@ class SingleMovie extends React.Component {
             <tr>
                 <td>
                     <figure className="image is-fullwidth">
-                        <img src={this.posterLink + this.props.imageUrl} alt="Poster" aria-label="close"/>
+                        <img className="tableImage" src={this.posterLink + this.props.imageUrl} alt="Poster"
+                             aria-label="close"/>
                     </figure>
                 </td>
                 <td>{this.props.title}</td>

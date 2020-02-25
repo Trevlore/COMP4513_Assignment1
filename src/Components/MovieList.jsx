@@ -2,7 +2,7 @@ import React from 'react';
 import SingleMovie from "./SingleMovie";
 import '../Style/Table.css'
 import '../Style/Shrink.css'
-import { CSSTransition, TransitionGroup} from 'react-transition-group';
+import {CSSTransition, TransitionGroup} from 'react-transition-group';
 
 class MovieList extends React.Component {
 
@@ -12,17 +12,18 @@ class MovieList extends React.Component {
 
 
     RenderMovies = () => {
-        if (this.props.movies.length != 0){
-        return (
-            <tbody>
+        if (this.props.movies.length !== 0) {
+            return (
+                <tbody>
                 <TransitionGroup className="Movies">
-                {this.props.movies.map((x) => {
-                    return (
-                        <CSSTransition key={this.props.id} enter exit mountOnEnter unmountOnExit timeout={1501} classNames="singleMovie">
-                        <SingleMovie
-                            addFavorite={this.props.addFavorite}
-                            remove={this.props.remove}
-                            key={x.id}
+                    {this.props.movies.map((x) => {
+                        return (
+                            <CSSTransition key={this.props.id} enter exit mountOnEnter unmountOnExit timeout={1501}
+                                           classNames="singleMovie">
+                                <SingleMovie
+                                    addFavorite={this.props.addFavorite}
+                                    remove={this.props.remove}
+                                    key={x.id}
                             id={x.id}
                             title={x.title}
                             releaseDate={x.release_date.getFullYear().toString()}

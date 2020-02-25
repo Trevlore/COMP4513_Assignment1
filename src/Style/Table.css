@@ -25,8 +25,8 @@ tbody tr {
     table-layout:fixed;
 }
 
-.table > tbody > tr> td> figure> img{
-    max-height:14vh;
-    width: auto;
+.tableImage {
+    max-height: 11vh;
+    width: auto !important;
     height: auto;
 }
