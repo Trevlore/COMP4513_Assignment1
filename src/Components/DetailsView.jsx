@@ -1,9 +1,21 @@
 import React, {useContext} from "react";
-import ViewTabs from "./ViewTabs"
 import {FavoriteContext} from "../Context/FavoriteContex";
 
 
 function DetailsView(props) {
+    function RenderCountries() {
+        return props.countries.map(x => {
+            return <span key={x.iso_3166_1} className="tag">{x.name}</span>
+        })
+    }
+
+    function RenderCompanies() {
+        return props.companies.map(x => {
+            console.log(x);
+            return <span key={x.id} className="tag">{x.name}</span>
+        })
+    }
+
     function addFavorite() {
         context.addFavorite({url: props.poster, id: props.id, alt: props.title})
     }
@@ -11,10 +23,10 @@ function DetailsView(props) {
     const context = useContext(FavoriteContext);
     const posterLink = "https://image.tmdb.org/t/p/w500/";
     return (
-                 <div className="columns ">
+        <div className="columns ">
 
-                    <div className="column is-two-fifths">
-                        <header className="card-header"><a onClick={addFavorite} className="card-footer-item ">Add to
+            <div className="column is-two-fifths">
+                <header className="card-header"><a onClick={addFavorite} className="card-footer-item ">Add to
                             favorites</a></header>
                         <div className="card-image">
                             <figure className="image is-2by3">
@@ -33,27 +45,22 @@ function DetailsView(props) {
                             <div className="column">
                                 <div className="">Countries</div>
                                 <div className="tags">
-                                    <span className="tag">One</span>
-                                    <span className="tag">Two</span>
-                                    <span className="tag">Three</span>
+                                    {RenderCountries()}
                                 </div>
                             </div>
 
                             <div className="column">
                                 <div className="">Companies</div>
                                 <div className="tags">
-                                    <span className="tag">One</span>
-                                    <span className="tag">Two</span>
-                                    <span className="tag">Three</span>
+                                    {RenderCompanies()}
                                 </div>
                             </div>
                         </div>
                     </div>
 
                 </div>
-                
 
-     
+
     )
 }
 export default DetailsView;
