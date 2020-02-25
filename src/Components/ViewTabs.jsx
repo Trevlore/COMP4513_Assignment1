@@ -29,8 +29,8 @@ class ViewTabs extends React.Component {
     toggleActive = (id) => document.getElementById(id).classList.toggle('is-active');
 
     renderCrew(crew) {
-        console.log("renderCrew")
-        console.log(crew)
+        // console.log("renderCrew")
+        // console.log(crew)
         return (
             <table className="table is-fullwidth" style={{ overflowX: "auto" }}>
                 <thead>
@@ -60,8 +60,8 @@ class ViewTabs extends React.Component {
 
 
     renderCast(cast) {
-        console.log("renderCast")
-        console.log(cast)
+        // console.log("renderCast")
+        // console.log(cast)
         return (
             
             <table className="table is-fullwidth" style={{ overflowX: "auto" }}>

@@ -51,7 +51,7 @@ class Movies extends React.Component {
                 x.release_date = new Date(x.release_date);
                 return x;
             });
-            console.log(parsedMovies)
+            // console.log(parsedMovies)
             parsedMovies = parsedMovies.sort((a,b) => (a.title > b.title) - (a.title < b.title));
             newState.movies = parsedMovies
             localStorage.setItem('movies', JSON.stringify(parsedMovies));
