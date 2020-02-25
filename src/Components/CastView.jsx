@@ -8,26 +8,34 @@ class CastView extends React.Component {
 
 	constructor(props) {
 		super(props);
+		// this.setState({ actor: this.props.actor});
+	}
+
+	componentWillReceiveProps(){
+		this.getActor()
 	}
 
 	async componentDidMount() {
-		const api_key = "fef700429c99e494247e8de834e89564";
-		console.log(this.props.cast_id)
-		const request = await fetch("https://api.themoviedb.org/3/person/" + this.props.cast_id + "?api_key=" + api_key);
-		let parsedCrew = await request.json();
-		console.log(parsedCrew)
-		this.setState({ person: parsedCrew, });
+		this.getActor()
 	}
 
+	async getActor() {
+		const request = await fetch("https://api.themoviedb.org/3/person/" + this.props.cast_id + "?api_key=fef700429c99e494247e8de834e89564");
+		let parsedCrew = await request.json();
+		this.setState({ actor: parsedCrew});
+	}
+
+
+
 	render() {
-		// https://api.themoviedb.org/3/person/8891?api_key=api_key
+
 		// https://www.themoviedb.org/movie/imdb_id 
 		// https://www.imdb.com/title/imdb_id,
 		if (!this.state) {
 			return (<FontAwesomeIcon icon={faSync} className="is-text-centered fa-10x fa-spin" />)
 		}
 		else {
-			const { name } = this.state.person
+			const { name } = this.state.actor
 			return (
 				<div className="CastView">
 					<div class="card">
@@ -42,7 +50,7 @@ class CastView extends React.Component {
 								</div>
 								<div class="media-content">
 									<p class="title is-4">{name}</p>
-									<p class="subtitle is-6">@johnsmith</p>
+									<p class="subtitle is-6"></p>
 								</div>
 							</div>
 
