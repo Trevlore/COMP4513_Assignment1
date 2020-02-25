@@ -4,7 +4,7 @@ import MovieFilter from './MovieFilter';
 import MovieList from './MovieList';
 import {generateRegex, getSearchParam} from "../Helpers/Helper";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faSync} from "@fortawesome/free-solid-svg-icons";
+import {faCaretLeft, faCaretRight, faSync} from "@fortawesome/free-solid-svg-icons";
 
 export const defaultQueryParams = {
     title: "",
@@ -30,7 +30,8 @@ class Movies extends React.Component {
             movies: movies,
             filteredMovies: [],
             searchParams: searchParams,
-            isLoading: loading
+            isLoading: loading,
+            movieFilterExpand: true
         }
     }
 
@@ -51,9 +52,8 @@ class Movies extends React.Component {
                 x.release_date = new Date(x.release_date);
                 return x;
             });
-            console.log(parsedMovies)
-            parsedMovies = parsedMovies.sort((a,b) => (a.title > b.title) - (a.title < b.title));
-            newState.movies = parsedMovies
+            parsedMovies = parsedMovies.sort((a, b) => (a.title > b.title) - (a.title < b.title));
+            newState.movies = parsedMovies;
             localStorage.setItem('movies', JSON.stringify(parsedMovies));
             newState.isLoading = false;
             this.setState(newState);
@@ -78,24 +78,36 @@ class Movies extends React.Component {
         });
         this.setState(newState);
     };
+    toggleClose = (e) => {
+        this.setState({...this.state, movieFilterExpand: !this.state.movieFilterExpand})
+    };
+
+    generateStyle() {
+        return this.state.movieFilterExpand ? null : {marginLeft: "1em"}
+    }
 
     render() {
         return (
             <React.Fragment>
 
                 <div className="columns">
-                    <MovieFilter
+                    {this.state.movieFilterExpand ? <MovieFilter
                         updateQuery={this.updateQuery}
                         searchParams={this.state.searchParams}
                         onSearch={this.filterOnQuery}
-                    />
+                    /> : null}
+
+                    <div className="findme" onClick={this.toggleClose} style={this.generateStyle()}>
+                        <FontAwesomeIcon icon={this.state.movieFilterExpand ? faCaretLeft : faCaretRight}
+                                         className="fa-2x" style={{height: "55vh"}}/>
+                    </div>
                     <div className="column has-text-centered">
                         {this.state.isLoading ? <FontAwesomeIcon icon={faSync} className="fa-spin fa-10x"/> :
-                        
+
                             <MovieList movies={this.state.filteredMovies}/>
-                        
-                            }
-                        
+
+                        }
+
                     </div>
                 </div>
             </React.Fragment>
