@@ -16,17 +16,15 @@ class MovieDetails extends React.Component {
     }
 
     async componentDidMount() {
-        // imdb_id
-        // https://www.themoviedb.org/movie/imdb_id 
-        // https://www.imdb.com/title/imdb_id,
+
         const request = await fetch("https://www.randyconnolly.com/funwebdev/3rd/api/movie/movies.php?id=" + getSearchParam("id"));
         let parsedMovie = await request.json();
         this.setState({ movie: parsedMovie, active: 'Details', crew: null});
     }
 
     castButton(cast_id) {
-        console.log("castButton");
-        this.setState({active: 'Cast', crew: cast_id});
+        console.log(cast_id);
+        this.setState({active: 'Cast', cast_id: cast_id});
     }
 
     backToDetailsButton() {
@@ -37,7 +35,7 @@ class MovieDetails extends React.Component {
     renderCast() {
         const { production } = this.state.movie;
         return (
-            <CastView castButton={this.backToDetailsButton} production={production} />)
+            <CastView castButton={this.backToDetailsButton} cast_id={this.state.cast_id} />)
     }
 
     renderDetails() {
