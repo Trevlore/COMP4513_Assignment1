@@ -1,4 +1,5 @@
 import React, {useContext} from "react";
+import ViewTabs from "./ViewTabs"
 import {FavoriteContext} from "../Context/FavoriteContex";
 
 

@@ -1,6 +1,7 @@
 import React from "react";
 
 function SingleCast(props) {
+    console.log(props)
         return  <tr>
         <td>{props.character}</td>
         <td>{props.name}</td>

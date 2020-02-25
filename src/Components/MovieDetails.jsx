@@ -32,17 +32,8 @@ class MovieDetails extends React.Component {
         this.setState({active: 'Details'});
     }
   
-	// async getActor() {
-    //     let parsedCrew = '';
-    //     const request = await fetch("https://api.themoviedb.org/3/person/" + this.state.cast_id + "?api_key=fef700429c99e494247e8de834e89564")
-    //     .then((response) => response.json())
-    //     .then((json) => parsedCrew = json);
-	// 	return parsedCrew;
-	// }
-
     renderCast() {
-        // const actor = this.getActor()
-        // console.log(actor)
+        const { production } = this.state.movie;
         return (
             <CastView castButton={this.backToDetailsButton} cast_id={this.state.cast_id} />)
     }
