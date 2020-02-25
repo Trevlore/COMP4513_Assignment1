@@ -19,21 +19,24 @@ function DetailsView(props) {
     function addFavorite() {
         context.addFavorite({url: props.poster, id: props.id, alt: props.title})
     }
-
+    console.log(props);
     const context = useContext(FavoriteContext);
     const posterLink = "https://image.tmdb.org/t/p/w500/";
     return (
         <div className="columns ">
 
             <div className="column is-two-fifths">
-                <header className="card-header"><a onClick={addFavorite} className="card-footer-item ">Add to
-                            favorites</a></header>
-                        <div className="card-image">
-                            <figure className="image is-2by3">
-                                <img src={posterLink + props.poster} alt="Poster"/>
-                            </figure>
-                        </div>
+                <header className="card-header">
+                    <div onClick={addFavorite} className="card-footer-item ">Add to
+                        favorites
                     </div>
+                </header>
+                <div className="card-image">
+                    <figure className="image is-2by3">
+                        <img src={posterLink + props.poster} alt="Poster"/>
+                    </figure>
+                </div>
+            </div>
 
                     <div className="column">
                         <div>

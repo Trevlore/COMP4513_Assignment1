@@ -1,18 +1,19 @@
 import React from 'react';
-import { getSearchParam } from "../Helpers/Helper";
+import {getSearchParam} from "../Helpers/Helper";
 import DetailsView from './DetailsView'
 import ViewTabs from './ViewTabs'
 import CastView from './CastView'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import "../Style/Details.css"
-import { faSync } from "@fortawesome/free-solid-svg-icons";
+import {faSync} from "@fortawesome/free-solid-svg-icons";
+import {cloneDeep} from "lodash";
 
 class MovieDetails extends React.Component {
 
     constructor(props) {
         super(props);
-        this.castButton = this.castButton.bind(this)
-        this.backToDetailsButton = this.backToDetailsButton.bind(this)
+        this.castButton = this.castButton.bind(this);
+        this.backToDetailsButton = this.backToDetailsButton.bind(this);
     }
 
     async componentDidMount() {
@@ -23,27 +24,16 @@ class MovieDetails extends React.Component {
     }
 
     castButton(cast_id) {
-        console.log(cast_id);
-        this.setState({active: 'Cast', cast_id: cast_id});
+        const newState = cloneDeep(this.state);
+        newState.active = 'Cast';
+        newState.cast_id = cast_id;
+        this.setState(newState);
     }
 
     backToDetailsButton() {
-        console.log("castButton");
         this.setState({active: 'Details'});
     }
   
-    renderCast() {
-        const { production } = this.state.movie;
-        return (
-            <CastView castButton={this.backToDetailsButton} cast_id={this.state.cast_id} />)
-    }
-
-    renderDetails() {
-        const { production, title, poster, details } = this.state.movie;
-        return (
-            <DetailsView castButton={this.castButton} title={title} poster={poster} production={production} details={details} />)
-    }
-
     render() {
          if (!this.state) {
             return (<FontAwesomeIcon icon={faSync} className="is-text-centered fa-10x fa-spin" />)
@@ -52,10 +42,21 @@ class MovieDetails extends React.Component {
                 <div className="View">
                     <div className="columns">
                         <div className="column is-two-thirds">
-                            {this.state.active == "Details" ? this.renderDetails() : this.renderCast()}
+                            {this.state.active === "Details" ?
+                                <DetailsView
+                                    castButton={this.castButton}
+                                    title={this.state.movie.title}
+                                    poster={this.state.movie.poster}
+                                    production={this.state.movie.production}
+                                    details={this.state.movie.details}
+                                    countries={this.state.movie.production.countries}
+                                    companies={this.state.movie.production.companies}
+                                /> :
+                                <CastView castButton={this.backToDetailsButton} cast_id={this.state.cast_id}/>}
                         </div>
                         <div className="column">
-                            <ViewTabs castButton={this.castButton} cast={this.state.movie.production.cast} crew={this.state.movie.production.crew} />
+                            <ViewTabs castButton={this.castButton} cast={this.state.movie.production.cast}
+                                      crew={this.state.movie.production.crew}/>
                         </div>
                     </div>
                 </div>

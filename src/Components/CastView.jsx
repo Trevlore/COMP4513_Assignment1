@@ -8,15 +8,19 @@ class CastView extends React.Component {
 
 	constructor(props) {
 		super(props);
+		this.state = {
+			person: null
+		};
 	}
 
 	photoApi = "https://image.tmdb.org/t/p/w500/";
 
 	async componentDidMount() {
+		("started");
 		const api_key = "fef700429c99e494247e8de834e89564";
 		const request = await fetch("https://api.themoviedb.org/3/person/" + this.props.cast_id + "?api_key=" + api_key);
 		let parsedCrew = await request.json();
-		this.setState({person: parsedCrew,});
+		this.setState({...this.state, person: parsedCrew});
 	}
 
 	months = [
@@ -38,7 +42,7 @@ class CastView extends React.Component {
 		// https://api.themoviedb.org/3/person/8891?api_key=api_key
 		// https://www.themoviedb.org/movie/imdb_id 
 		// https://www.imdb.com/title/imdb_id,
-		if (!this.state) {
+		if (this.state.person === null) {
 			return (<FontAwesomeIcon icon={faSync} className="is-text-centered fa-10x fa-spin"/>)
 		} else {
 			const {name, imdb_id, biography, profile_path, birthday, place_of_birth} = this.state.person;
